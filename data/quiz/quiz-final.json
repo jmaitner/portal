@@ -1,0 +1,57 @@
+{
+  "id": "quiz-final",
+  "title": "Final Assessment",
+  "description": "Comprehensive test of course material",
+  "questions": [
+    {
+      "question": "What is the minimum safe following distance in good weather?",
+      "options": [
+        "1 second",
+        "2 seconds",
+        "3 seconds",
+        "4 seconds"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "When should you use your hazard lights?",
+      "options": [
+        "When driving in heavy traffic",
+        "When your vehicle is disabled on the roadway",
+        "When you're running late",
+        "When driving in the rain"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What should you do if your brakes fail?",
+      "options": [
+        "Panic and slam on the emergency brake",
+        "Downshift and use the emergency brake gradually",
+        "Turn off the engine immediately",
+        "Jump out of the vehicle"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "In Florida, you must stop for a school bus with flashing red lights:",
+      "options": [
+        "Only on two-lane roads",
+        "Only on four-lane roads",
+        "On all roads, regardless of the number of lanes",
+        "Only when children are visible"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the best way to avoid a collision when another driver cuts you off?",
+      "options": [
+        "Honk your horn and flash your lights",
+        "Speed up to get ahead of them",
+        "Slow down and let them pass",
+        "Follow them closely to show your displeasure"
+      ],
+      "correctAnswer": 2
+    }
+  ]
+}

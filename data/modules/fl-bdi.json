@@ -1,0 +1,309 @@
+{
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to Traffic Safety",
+      "lessons": [
+        {
+          "id": "l1",
+          "title": "Welcome to the Course",
+          "type": "read",
+          "content": [
+            {
+              "type": "heading",
+              "text": "Welcome to Florida Basic Driver Improvement"
+            },
+            {
+              "type": "paragraph",
+              "text": "This course is designed to help you improve your driving skills and knowledge of traffic safety laws in Florida. You'll learn about defensive driving techniques, traffic laws, and emergency procedures."
+            },
+            {
+              "type": "note",
+              "text": "This course must be completed with a passing score of 80% or higher to receive your certificate."
+            },
+            {
+              "type": "heading",
+              "text": "Course Objectives"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Understand Florida traffic laws and regulations",
+                "Learn defensive driving techniques",
+                "Recognize and respond to emergency situations",
+                "Improve overall driving safety awareness"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "title": "Traffic Safety Fundamentals",
+          "type": "read",
+          "content": [
+            {
+              "type": "heading",
+              "text": "The Foundation of Safe Driving"
+            },
+            {
+              "type": "paragraph",
+              "text": "Safe driving begins with understanding the fundamental principles of traffic safety. These principles apply to all driving situations and help prevent accidents."
+            },
+            {
+              "type": "heading",
+              "text": "Key Safety Principles"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Always maintain a safe following distance",
+                "Scan the road ahead for potential hazards",
+                "Obey all traffic signals and signs",
+                "Never drive under the influence of drugs or alcohol",
+                "Keep your vehicle in good working condition"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Understanding Traffic Laws",
+      "lessons": [
+        {
+          "id": "l3",
+          "title": "Florida Traffic Laws Overview",
+          "type": "read",
+          "content": [
+            {
+              "type": "heading",
+              "text": "Florida Traffic Laws"
+            },
+            {
+              "type": "paragraph",
+              "text": "Florida has specific traffic laws designed to keep all road users safe. Understanding these laws is essential for safe driving."
+            },
+            {
+              "type": "heading",
+              "text": "Speed Limits"
+            },
+            {
+              "type": "paragraph",
+              "text": "Speed limits vary by road type and location. Always observe posted speed limits and adjust for weather and traffic conditions."
+            },
+            {
+              "type": "note",
+              "text": "Remember: Speed limits are maximum speeds under ideal conditions. You must drive slower when conditions require it."
+            }
+          ]
+        },
+        {
+          "id": "l4",
+          "title": "Traffic Laws Quiz",
+          "type": "quiz",
+          "quiz": {
+            "id": "quiz-traffic-laws",
+            "questions": [
+              {
+                "question": "What is the maximum speed limit on Florida highways unless otherwise posted?",
+                "options": [
+                  "55 mph",
+                  "65 mph",
+                  "70 mph",
+                  "75 mph"
+                ],
+                "correctAnswer": 2
+              },
+              {
+                "question": "When approaching a school bus with flashing red lights, you must:",
+                "options": [
+                  "Slow down and proceed with caution",
+                  "Stop and wait until the lights stop flashing",
+                  "Honk your horn to alert the driver",
+                  "Speed up to pass quickly"
+                ],
+                "correctAnswer": 1
+              },
+              {
+                "question": "In Florida, you must yield the right-of-way to:",
+                "options": [
+                  "Emergency vehicles with lights and sirens",
+                  "All vehicles on the right",
+                  "Only police vehicles",
+                  "Only ambulances"
+                ],
+                "correctAnswer": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Defensive Driving Techniques",
+      "lessons": [
+        {
+          "id": "l5",
+          "title": "Defensive Driving Basics",
+          "type": "read",
+          "content": [
+            {
+              "type": "heading",
+              "text": "What is Defensive Driving?"
+            },
+            {
+              "type": "paragraph",
+              "text": "Defensive driving is a set of driving skills that allows you to defend yourself against possible collisions caused by bad drivers, drunk drivers, and poor weather."
+            },
+            {
+              "type": "heading",
+              "text": "Core Defensive Driving Techniques"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Maintain a safe following distance (3-second rule)",
+                "Scan the road ahead and check mirrors frequently",
+                "Anticipate potential hazards and plan escape routes",
+                "Avoid distractions and stay focused on driving",
+                "Adjust speed for weather and road conditions"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "l6",
+          "title": "Hazard Recognition",
+          "type": "read",
+          "content": [
+            {
+              "type": "heading",
+              "text": "Recognizing Road Hazards"
+            },
+            {
+              "type": "paragraph",
+              "text": "Being able to identify potential hazards before they become dangerous is a key skill in defensive driving."
+            },
+            {
+              "type": "heading",
+              "text": "Common Road Hazards"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Pedestrians crossing the road",
+                "Vehicles entering from side streets",
+                "Animals on or near the roadway",
+                "Construction zones and road work",
+                "Weather-related hazards (rain, fog, ice)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Emergency Procedures",
+      "lessons": [
+        {
+          "id": "l7",
+          "title": "Emergency Response",
+          "type": "read",
+          "content": [
+            {
+              "type": "heading",
+              "text": "Handling Emergency Situations"
+            },
+            {
+              "type": "paragraph",
+              "text": "Knowing how to respond in emergency situations can save lives. This lesson covers the proper procedures for various emergency scenarios."
+            },
+            {
+              "type": "heading",
+              "text": "Emergency Response Steps"
+            },
+            {
+              "type": "list",
+              "items": [
+                "Stay calm and assess the situation",
+                "Move to a safe location if possible",
+                "Call emergency services if needed",
+                "Provide first aid if trained to do so",
+                "Exchange information with other parties involved"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "l8",
+          "title": "Final Assessment",
+          "type": "quiz",
+          "quiz": {
+            "id": "quiz-final",
+            "questions": [
+              {
+                "question": "What is the minimum safe following distance in good weather?",
+                "options": [
+                  "1 second",
+                  "2 seconds",
+                  "3 seconds",
+                  "4 seconds"
+                ],
+                "correctAnswer": 2
+              },
+              {
+                "question": "When should you use your hazard lights?",
+                "options": [
+                  "When driving in heavy traffic",
+                  "When your vehicle is disabled on the roadway",
+                  "When you're running late",
+                  "When driving in the rain"
+                ],
+                "correctAnswer": 1
+              },
+              {
+                "question": "What should you do if your brakes fail?",
+                "options": [
+                  "Panic and slam on the emergency brake",
+                  "Downshift and use the emergency brake gradually",
+                  "Turn off the engine immediately",
+                  "Jump out of the vehicle"
+                ],
+                "correctAnswer": 1
+              },
+              {
+                "question": "In Florida, you must stop for a school bus with flashing red lights:",
+                "options": [
+                  "Only on two-lane roads",
+                  "Only on four-lane roads",
+                  "On all roads, regardless of the number of lanes",
+                  "Only when children are visible"
+                ],
+                "correctAnswer": 2
+              },
+              {
+                "question": "What is the best way to avoid a collision when another driver cuts you off?",
+                "options": [
+                  "Honk your horn and flash your lights",
+                  "Speed up to get ahead of them",
+                  "Slow down and let them pass",
+                  "Follow them closely to show your displeasure"
+                ],
+                "correctAnswer": 2
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "totalModules": 4,
+    "totalLessons": 8,
+    "firstModuleId": "m1",
+    "firstLessonId": "l1"
+  }
+}

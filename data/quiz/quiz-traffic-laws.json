@@ -1,0 +1,37 @@
+{
+  "id": "quiz-traffic-laws",
+  "title": "Traffic Laws Quiz",
+  "description": "Test your knowledge of Florida traffic laws",
+  "questions": [
+    {
+      "question": "What is the maximum speed limit on Florida highways unless otherwise posted?",
+      "options": [
+        "55 mph",
+        "65 mph",
+        "70 mph",
+        "75 mph"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "When approaching a school bus with flashing red lights, you must:",
+      "options": [
+        "Slow down and proceed with caution",
+        "Stop and wait until the lights stop flashing",
+        "Honk your horn to alert the driver",
+        "Speed up to pass quickly"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "In Florida, you must yield the right-of-way to:",
+      "options": [
+        "Emergency vehicles with lights and sirens",
+        "All vehicles on the right",
+        "Only police vehicles",
+        "Only ambulances"
+      ],
+      "correctAnswer": 0
+    }
+  ]
+}

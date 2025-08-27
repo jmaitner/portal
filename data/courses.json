@@ -1,0 +1,20 @@
+[
+  {
+    "id": "fl-bdi",
+    "slug": "fl-bdi",
+    "title": "Florida Basic Driver Improvement",
+    "state": "FL",
+    "durationMin": 240,
+    "passPercent": 80,
+    "seatTime": true
+  },
+  {
+    "id": "mi-bdic",
+    "slug": "mi-bdic",
+    "title": "Michigan Basic Driver Improvement",
+    "state": "MI",
+    "durationMin": 240,
+    "passPercent": 80,
+    "seatTime": true
+  }
+]

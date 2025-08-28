@@ -248,16 +248,30 @@ const currentDate = new Date().toLocaleDateString('en-US', {
           <!-- Course Title -->
           <h2 class="text-xl font-semibold text-gray-900 mb-4">Florida Basic Driver Improvement Course</h2>
           
-          <!-- Continue Course CTA -->
-          <UButton 
-            @click="navigateToLesson('m1', 'l1')"
-            color="primary"
-            size="lg"
-            block
-            class="mb-6"
-          >
-            Continue Course
-          </UButton>
+                                <!-- Continue Course / Save & Exit CTA -->
+                      <UButton 
+                        v-if="currentModuleId === 'm1' && currentLessonId === 'l1'"
+                        @click="() => navigateTo('/dashboard')"
+                        color="gray"
+                        variant="outline"
+                        size="lg"
+                        block
+                        class="mb-6"
+                        icon="i-heroicons-bookmark"
+                      >
+                        Save & Exit
+                      </UButton>
+                      <UButton 
+                        v-else
+                        @click="navigateToLesson('m1', 'l1')"
+                        color="primary"
+                        size="lg"
+                        block
+                        class="mb-6"
+                        icon="i-heroicons-play"
+                      >
+                        Continue Course
+                      </UButton>
           
           
           

@@ -96,25 +96,28 @@ defineExpose({
 </script>
 
 <template>
-  <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-6 shadow-lg">
     <!-- Desktop Layout -->
     <div class="hidden lg:block">
       <!-- Top Row -->
       <div class="flex items-center justify-between mb-4">
         <!-- Left: Play/Pause Button -->
-        <div class="flex flex-col items-center space-y-2">
-          <UButton
-            @click="toggleTimer"
-            :color="isRunning ? 'gray' : 'primary'"
-            variant="outline"
-            size="sm"
-            :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
-            :aria-pressed="isRunning"
-            :disabled="secondsRemaining <= 0"
-            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            {{ isRunning ? 'Pause' : 'Resume' }}
-          </UButton>
+        <div class="flex flex-col items-center space-y-3">
+          <div class="relative">
+            <UButton
+              @click="toggleTimer"
+              :color="isRunning ? 'gray' : 'primary'"
+              variant="solid"
+              size="lg"
+              :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
+              :aria-pressed="isRunning"
+              :disabled="secondsRemaining <= 0"
+              class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg transition-all duration-200"
+            >
+              {{ isRunning ? 'Pause' : 'Resume' }}
+            </UButton>
+            <div v-if="isRunning" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+          </div>
           
           <!-- Exit Button Under Pause -->
           <UButton
@@ -123,79 +126,131 @@ defineExpose({
             variant="ghost"
             size="sm"
             icon="i-heroicons-x-mark"
-            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 hover:bg-gray-100 transition-colors"
           >
             Exit
           </UButton>
         </div>
         
         <!-- Center: Time Remaining -->
-        <div class="text-lg font-medium text-gray-900" aria-live="polite">
-          Time remaining: {{ formattedTime }}
+        <div class="text-center">
+          <div class="text-2xl font-bold text-blue-900 mb-1" aria-live="polite">
+            {{ formattedTime }}
+          </div>
+          <div class="text-sm text-blue-700 font-medium">
+            Time Remaining
+          </div>
+          <!-- Progress Bar -->
+          <div class="mt-3 w-32 mx-auto">
+            <div class="bg-blue-200 rounded-full h-2">
+              <div 
+                class="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-out"
+                :style="{ width: `${((props.secondsTotal - secondsRemaining) / props.secondsTotal) * 100}%` }"
+              ></div>
+            </div>
+          </div>
         </div>
         
         <!-- Right: Next Button -->
-        <UButton
-          v-if="hasNext"
-          @click="onNext"
-          color="primary"
-          icon="i-heroicons-arrow-right"
-          icon-right
-          :disabled="!isFinished"
-          :aria-disabled="!isFinished"
-          class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          Next
-        </UButton>
-        <div v-else class="w-16"></div>
+        <div class="flex flex-col items-center">
+          <UButton
+            v-if="hasNext"
+            @click="onNext"
+            :color="isFinished ? 'primary' : 'gray'"
+            variant="solid"
+            size="lg"
+            icon="i-heroicons-arrow-right"
+            icon-right
+            :disabled="!isFinished"
+            :aria-disabled="!isFinished"
+            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg transition-all duration-200"
+          >
+            Next
+          </UButton>
+          <div v-else class="w-16 h-10"></div>
+          
+          <!-- Status Indicator -->
+          <div v-if="hasNext" class="mt-2 text-xs text-center">
+            <div v-if="!isFinished" class="text-gray-500">
+              <UIcon name="i-heroicons-clock" class="w-3 h-3 inline mr-1" />
+              Waiting for timer
+            </div>
+            <div v-else class="text-green-600 font-medium">
+              <UIcon name="i-heroicons-check-circle" class="w-3 h-3 inline mr-1" />
+              Ready to continue
+            </div>
+          </div>
+        </div>
       </div>
       
       <!-- Helper Text Row -->
-      <div class="flex items-center justify-center">
-        <span v-if="hasNext && !isFinished" class="text-sm text-gray-600">
-          Time must finish before 'Next' becomes available
-        </span>
+      <div class="flex items-center justify-center mt-4">
+        <div v-if="hasNext && !isFinished" class="bg-blue-100 border border-blue-200 rounded-lg px-4 py-2">
+          <div class="flex items-center space-x-2">
+            <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-blue-600" />
+            <span class="text-sm text-blue-800 font-medium">
+              Complete the timer to continue
+            </span>
+          </div>
+        </div>
       </div>
     </div>
     
     <!-- Mobile Layout -->
-    <div class="lg:hidden space-y-3">
+    <div class="lg:hidden space-y-4">
       <!-- Time Remaining -->
       <div class="text-center">
-        <div class="text-base font-medium text-gray-900" aria-live="polite">
-          Time remaining: {{ formattedTime }}
+        <div class="text-xl font-bold text-blue-900 mb-1" aria-live="polite">
+          {{ formattedTime }}
+        </div>
+        <div class="text-sm text-blue-700 font-medium mb-3">
+          Time Remaining
+        </div>
+        <!-- Progress Bar -->
+        <div class="w-48 mx-auto">
+          <div class="bg-blue-200 rounded-full h-2">
+            <div 
+              class="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-out"
+              :style="{ width: `${((props.secondsTotal - secondsRemaining) / props.secondsTotal) * 100}%` }"
+            ></div>
+          </div>
         </div>
       </div>
       
       <!-- Play/Pause Button -->
       <div class="flex justify-center">
-        <UButton
-          @click="toggleTimer"
-          :color="isRunning ? 'gray' : 'primary'"
-          variant="outline"
-          size="sm"
-          :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
-          :aria-pressed="isRunning"
-          :disabled="secondsRemaining <= 0"
-          class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          {{ isRunning ? 'Pause' : 'Resume' }}
-        </UButton>
+        <div class="relative">
+          <UButton
+            @click="toggleTimer"
+            :color="isRunning ? 'gray' : 'primary'"
+            variant="solid"
+            size="lg"
+            :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
+            :aria-pressed="isRunning"
+            :disabled="secondsRemaining <= 0"
+            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg transition-all duration-200"
+          >
+            {{ isRunning ? 'Pause' : 'Resume' }}
+          </UButton>
+          <div v-if="isRunning" class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+        </div>
       </div>
       
       <!-- Next Button -->
       <UButton
         v-if="hasNext"
         @click="onNext"
-        color="primary"
+        :color="isFinished ? 'primary' : 'gray'"
+        variant="solid"
         icon="i-heroicons-arrow-right"
         icon-right
         :disabled="!isFinished"
         :aria-disabled="!isFinished"
         block
-        class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        size="lg"
+        class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md hover:shadow-lg transition-all duration-200"
       >
-        Next
+        {{ isFinished ? 'Continue to Next Lesson' : 'Next (Timer Required)' }}
       </UButton>
       
       <!-- Exit + Helper Text -->
@@ -210,9 +265,14 @@ defineExpose({
           Exit
         </UButton>
         
-        <span v-if="hasNext && !isFinished" class="text-sm text-gray-600 text-center">
-          Time must finish before 'Next' becomes available
-        </span>
+        <div v-if="hasNext && !isFinished" class="bg-blue-100 border border-blue-200 rounded-lg px-4 py-2 text-center">
+          <div class="flex items-center justify-center space-x-2">
+            <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-blue-600" />
+            <span class="text-sm text-blue-800 font-medium">
+              Complete the timer to continue
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

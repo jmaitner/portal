@@ -159,10 +159,10 @@ defineExpose({
     </div>
     
     <!-- Mobile Layout -->
-    <div class="lg:hidden space-y-4">
+    <div class="lg:hidden space-y-3">
       <!-- Time Remaining -->
       <div class="text-center">
-        <div class="text-lg font-medium text-gray-900" aria-live="polite">
+        <div class="text-base font-medium text-gray-900" aria-live="polite">
           Time remaining: {{ formattedTime }}
         </div>
       </div>

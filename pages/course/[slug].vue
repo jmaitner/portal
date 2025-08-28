@@ -242,8 +242,8 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 
     <!-- Main Content -->
     <div class="flex">
-      <!-- Left Rail -->
-      <div class="w-80 bg-white border-r border-gray-200 flex-shrink-0 sticky top-0 h-screen overflow-y-auto">
+                        <!-- Left Rail -->
+                  <div class="w-80 bg-white border-r border-gray-200 flex-shrink-0 sticky top-0 h-screen overflow-y-auto lg:block hidden">
         <div class="p-6">
           <!-- Course Title -->
           <h2 class="text-xl font-semibold text-gray-900 mb-4">Florida Basic Driver Improvement Course</h2>
@@ -311,10 +311,10 @@ const currentDate = new Date().toLocaleDateString('en-US', {
         </div>
       </div>
 
-      <!-- Right Content -->
-      <div class="flex-1 min-h-[calc(100vh-64px)] flex flex-col">
+                          <!-- Right Content -->
+                    <div class="flex-1 min-h-[calc(100vh-64px)] flex flex-col lg:ml-0">
         <!-- Top strip -->
-        <div class="bg-white border-b border-gray-200 px-6 py-4">
+        <div class="bg-white border-b border-gray-200 px-6 py-4 lg:block hidden">
           <div class="flex items-center justify-between">
             <div>
               <h1 class="text-2xl font-semibold text-gray-900">
@@ -338,7 +338,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
         </div>
 
         <!-- Content Area -->
-        <div class="p-8 flex-1">
+        <div class="p-4 lg:p-8 flex-1">
           <div class="w-full h-full flex flex-col">
             <!-- Final Exam -->
             <div v-if="currentModuleId === 'final-exam'" class="space-y-6">
@@ -529,7 +529,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             <!-- Regular Lesson Content -->
             <div v-else-if="currentLesson" class="space-y-6 flex-1 flex flex-col">
               <!-- Lesson content -->
-              <div class="bg-white rounded-lg border border-gray-200 p-8 md:p-10 flex-1 shadow-sm">
+                                        <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-8 xl:p-10 flex-1 shadow-sm">
                 <LessonRenderer 
                   v-if="currentLesson.type === 'read'"
                   :lesson="currentLesson"
@@ -595,7 +595,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             </div>
 
             <!-- Empty state for demo modules -->
-            <div v-else class="bg-white rounded-lg border border-gray-200 p-8 md:p-10 min-h-[60vh] text-center shadow-sm">
+            <div v-else class="bg-white rounded-lg border border-gray-200 p-4 lg:p-8 xl:p-10 min-h-[60vh] text-center shadow-sm">
               <UIcon name="i-heroicons-document-text" class="w-12 h-12 text-gray-400 mx-auto mb-4" />
               <h3 class="text-lg font-medium text-gray-900 mb-2">Content Coming Soon</h3>
               <p class="text-gray-600">This module is available for demonstration purposes. In a full implementation, it would contain lesson content.</p>
@@ -607,16 +607,33 @@ const currentDate = new Date().toLocaleDateString('en-US', {
       </div>
     </div>
 
-    <!-- Mobile Rail Toggle -->
-    <div class="lg:hidden fixed bottom-4 right-4 z-50">
-      <UButton
-        @click="showMobileRail = !showMobileRail"
-        color="primary"
-        icon="i-heroicons-bars-3"
-        size="lg"
-        class="rounded-full shadow-lg"
-      />
-    </div>
+                    <!-- Mobile Rail Toggle -->
+                <div class="lg:hidden fixed bottom-4 right-4 z-50">
+                  <UButton
+                    @click="showMobileRail = !showMobileRail"
+                    color="primary"
+                    icon="i-heroicons-bars-3"
+                    size="lg"
+                    class="rounded-full shadow-lg"
+                  />
+                </div>
+
+                <!-- Mobile Header with Course Title -->
+                <div class="lg:hidden bg-white border-b border-gray-200 px-4 py-3">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h1 class="text-lg font-semibold text-gray-900">Florida Basic Driver Improvement</h1>
+                      <p class="text-sm text-gray-600">Course Progress</p>
+                    </div>
+                    <UButton
+                      @click="showMobileRail = !showMobileRail"
+                      color="gray"
+                      variant="ghost"
+                      icon="i-heroicons-bars-3"
+                      size="sm"
+                    />
+                  </div>
+                </div>
 
     <!-- Mobile Rail Overlay -->
     <div v-if="showMobileRail" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40" @click="showMobileRail = false">

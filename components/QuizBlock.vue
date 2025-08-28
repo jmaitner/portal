@@ -98,6 +98,7 @@ const isSelected = (questionId, choiceIndex) => {
         @click="checkAnswers"
         color="primary"
         :disabled="Object.keys(selectedAnswers).length < questions.length"
+        class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
         Check Answers
       </UButton>
@@ -107,6 +108,7 @@ const isSelected = (questionId, choiceIndex) => {
         @click="tryAgain"
         color="gray"
         variant="outline"
+        class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
         Try Again
       </UButton>

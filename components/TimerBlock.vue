@@ -95,12 +95,13 @@ defineExpose({
   <div class="flex items-center space-x-3">
     <UButton
       @click="toggleTimer"
-      :color="isRunning ? 'gray' : 'blue'"
+      :color="isRunning ? 'gray' : 'primary'"
       variant="outline"
       size="sm"
       :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
       :aria-pressed="isRunning"
       :disabled="secondsRemaining <= 0"
+      class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
     >
       {{ isRunning ? 'Pause' : 'Resume' }}
     </UButton>

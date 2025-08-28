@@ -48,7 +48,7 @@
           "id": "l3",
           "type": "read",
           "title": "Florida Traffic Laws Overview",
-          "durationMin": 20,
+          "durationMin": 0.5,
           "body": [
             {
               "type": "h3",
@@ -71,7 +71,7 @@
           "id": "l4",
           "type": "read",
           "title": "Defensive Driving Fundamentals",
-          "durationMin": 25,
+          "durationMin": 0.3,
           "body": [
             {
               "type": "h3",
@@ -94,7 +94,7 @@
           "id": "l5",
           "type": "read",
           "title": "Effects of Alcohol and Drugs",
-          "durationMin": 20,
+          "durationMin": 0.4,
           "body": [
             {
               "type": "h3",

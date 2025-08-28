@@ -26,21 +26,16 @@ const currentLesson = computed(() =>
 
 // Timer state
 const timerRef = ref(null)
-const canNext = ref(false)
-const isTimerRunning = ref(false)
-const secondsRemaining = ref(90) // Default 90 seconds for demo
 
 // Timer finish callback
 const onTimerFinish = () => {
-  canNext.value = true
+  // Timer finished - Next button will be enabled in TimerCard
 }
 
-// Reset timer when lesson changes
+// Auto-start timer when lesson changes
 watch([currentModuleId, currentLessonId], () => {
   if (timerRef.value && currentLesson.value?.type === 'read') {
-    timerRef.value.resetTimer()
-    canNext.value = false
-    secondsRemaining.value = (currentLesson.value.durationMin || 1.5) * 60
+    // TimerCard will auto-start when mounted
   }
 }, { immediate: true })
 
@@ -216,16 +211,16 @@ const currentDate = new Date().toLocaleDateString('en-US', {
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200">
-      <div class="flex items-center justify-between px-6 py-3">
+      <div class="flex items-center justify-between px-6 py-4">
         <!-- Left: Logo -->
         <div class="flex items-center space-x-3">
-          <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-8 w-auto" />
+          <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" aria-hidden="true" />
           <span class="text-lg font-semibold text-gray-900">Road Ready Safety</span>
         </div>
         
         <!-- Middle: Course title and breadcrumb -->
         <div class="flex-1 text-center">
-          <h1 class="text-lg font-semibold text-gray-900">{{ course.title }}</h1>
+          <h1 class="text-lg font-semibold text-gray-900">Florida Basic Driver Improvement</h1>
           <p class="text-sm text-gray-600">My Course › FL BDI</p>
         </div>
         
@@ -235,12 +230,12 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             <span class="text-sm font-medium text-blue-700">{{ course.meta.demoProgressPercent }}%</span>
           </div>
           
-          <NuxtLink to="/support" class="text-gray-600 hover:text-gray-900 font-medium text-sm">
+          <NuxtLink to="/support" class="text-gray-600 hover:text-gray-900 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
             Support
           </NuxtLink>
           
           <div class="relative">
-            <button class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+            <button class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
               <UIcon name="i-heroicons-user" class="w-4 h-4 text-gray-600" />
             </button>
           </div>
@@ -251,10 +246,10 @@ const currentDate = new Date().toLocaleDateString('en-US', {
     <!-- Main Content -->
     <div class="flex">
       <!-- Left Rail -->
-      <div class="w-80 bg-white border-r border-gray-200 flex-shrink-0">
+      <div class="w-80 bg-white border-r border-gray-200 flex-shrink-0 sticky top-0 h-screen overflow-y-auto">
         <div class="p-6">
           <!-- Course Title -->
-          <h2 class="text-xl font-semibold text-gray-900 mb-4">{{ course.title }}</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-4">Florida Basic Driver Improvement Course</h2>
           
           <!-- Continue Course CTA -->
           <UButton 
@@ -267,6 +262,15 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             Continue Course
           </UButton>
           
+          <!-- Need Help Card -->
+          <div class="bg-blue-50 rounded-lg p-4 mb-6">
+            <h4 class="text-sm font-medium text-blue-900 mb-2">Need help?</h4>
+            <div class="text-xs text-blue-800 space-y-1">
+              <p>Email: info@roadreadysafety.com</p>
+              <p>Phone: (888) 885-5707</p>
+            </div>
+          </div>
+          
           <div class="border-t border-gray-200 pt-6">
             <!-- Roadmap -->
             <h3 class="text-sm font-medium text-gray-700 mb-4">Course Progress</h3>
@@ -275,7 +279,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                 v-for="item in roadmapItems"
                 :key="item.id"
                 @click="handleRoadmapClick(item)"
-                class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left"
+                class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
                 :class="{
                   'bg-blue-50 text-blue-700 border-l-2 border-blue-500': 
                     (item.kind === 'module' && item.id === currentModuleId) ||
@@ -306,6 +310,11 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                 
                 <!-- Title -->
                 <span class="flex-1">{{ item.title }}</span>
+                
+                <!-- Estimated Time (for modules) -->
+                <span v-if="item.kind === 'module'" class="text-xs text-gray-400">
+                  {{ item.lessons?.length || 2 }} min
+                </span>
               </button>
             </div>
           </div>
@@ -313,7 +322,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
       </div>
 
       <!-- Right Content -->
-      <div class="flex-1">
+      <div class="flex-1 min-h-[calc(100vh-64px)] flex flex-col">
         <!-- Top strip -->
         <div class="bg-white border-b border-gray-200 px-6 py-4">
           <div class="flex items-center justify-between">
@@ -331,6 +340,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                 :value="course.meta.demoProgressPercent" 
                 :max="100"
                 class="w-32"
+                color="primary"
               />
               <span class="text-sm text-gray-600">{{ course.meta.demoProgressPercent }}%</span>
             </div>
@@ -338,8 +348,8 @@ const currentDate = new Date().toLocaleDateString('en-US', {
         </div>
 
         <!-- Content Area -->
-        <div class="p-8">
-          <div class="max-w-4xl mx-auto">
+        <div class="p-8 flex-1">
+          <div class="w-full h-full flex flex-col">
             <!-- Final Exam -->
             <div v-if="currentModuleId === 'final-exam'" class="space-y-6">
               <div class="mb-6">
@@ -425,6 +435,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                     @click="checkAnswers"
                     color="primary"
                     :disabled="Object.keys(selectedAnswers).length < finalExamQuiz.questions.length"
+                    class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     Submit Exam
                   </UButton>
@@ -434,6 +445,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                     @click="tryAgain"
                     color="gray"
                     variant="outline"
+                    class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     Try Again
                   </UButton>
@@ -441,7 +453,8 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                   <UButton
                     v-if="showResults && examPassed"
                     @click="navigateToLesson('certificate', 'cert')"
-                    color="green"
+                    color="success"
+                    class="focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                   >
                     View Certificate
                   </UButton>
@@ -457,43 +470,43 @@ const currentDate = new Date().toLocaleDateString('en-US', {
               </div>
 
               <!-- Certificate Preview -->
-              <div class="bg-white rounded-lg border border-gray-200 p-8">
-                <div class="text-center space-y-6">
+              <div class="bg-white rounded-lg border border-gray-200 p-8 md:p-10 min-h-[60vh] shadow-sm">
+                <div class="text-center space-y-8">
                   <!-- Certificate Header -->
-                  <div class="space-y-2">
-                    <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-12 w-auto mx-auto" />
-                    <h3 class="text-2xl font-bold text-gray-900">Certificate of Completion</h3>
-                    <p class="text-gray-600">This is to certify that</p>
+                  <div class="space-y-4">
+                    <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-16 w-auto mx-auto" />
+                    <h3 class="text-3xl font-bold text-gray-900">Certificate of Completion</h3>
+                    <p class="text-gray-600 text-lg">This is to certify that</p>
                   </div>
 
                   <!-- Student Name -->
-                  <div class="py-4">
-                    <p class="text-xl font-semibold text-gray-900 border-b-2 border-gray-300 pb-2">
+                  <div class="py-6">
+                    <p class="text-2xl font-semibold text-gray-900 border-b-2 border-gray-300 pb-3">
                       [Student Name]
                     </p>
                   </div>
 
                   <!-- Course Details -->
-                  <div class="space-y-2">
-                    <p class="text-gray-600">has successfully completed the</p>
-                    <p class="text-lg font-semibold text-gray-900">{{ course.title }}</p>
+                  <div class="space-y-3">
+                    <p class="text-gray-600 text-lg">has successfully completed the</p>
+                    <p class="text-xl font-semibold text-gray-900">{{ course.title }}</p>
                     <p class="text-gray-600">State: {{ course.state }}</p>
                     <p class="text-gray-600">Duration: {{ course.durationMin }} minutes</p>
                   </div>
 
                   <!-- Completion Date -->
-                  <div class="pt-4">
+                  <div class="pt-6">
                     <p class="text-gray-600">Completed on</p>
-                    <p class="text-lg font-semibold text-gray-900">{{ currentDate }}</p>
+                    <p class="text-xl font-semibold text-gray-900">{{ currentDate }}</p>
                   </div>
 
                   <!-- Certificate Number -->
-                  <div class="pt-4 border-t border-gray-200">
+                  <div class="pt-6 border-t border-gray-200">
                     <p class="text-sm text-gray-500">Certificate #: FL-BDI-{{ Date.now().toString().slice(-8) }}</p>
                   </div>
 
                   <!-- Disclaimer -->
-                  <div class="pt-4 text-xs text-gray-500 max-w-md mx-auto">
+                  <div class="pt-6 text-xs text-gray-500 max-w-md mx-auto">
                     <p>This certificate is issued for educational purposes and satisfies the requirements for Florida Basic Driver Improvement course completion.</p>
                   </div>
                 </div>
@@ -506,6 +519,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                   variant="outline"
                   icon="i-heroicons-arrow-left"
                   @click="navigateToLesson('final-exam', 'exam')"
+                  class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Back to Exam
                 </UButton>
@@ -515,6 +529,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                   icon="i-heroicons-document-arrow-down"
                   disabled
                   title="Demo only - Download not available"
+                  class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Download PDF
                 </UButton>
@@ -522,9 +537,9 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             </div>
 
             <!-- Regular Lesson Content -->
-            <div v-else-if="currentLesson" class="space-y-6">
+            <div v-else-if="currentLesson" class="space-y-6 flex-1 flex flex-col">
               <!-- Lesson content -->
-              <div class="bg-white rounded-lg border border-gray-200 p-8">
+              <div class="bg-white rounded-lg border border-gray-200 p-8 md:p-10 flex-1 shadow-sm">
                 <LessonRenderer 
                   v-if="currentLesson.type === 'read'"
                   :lesson="currentLesson"
@@ -536,20 +551,22 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                 />
               </div>
               
-              <!-- Timer for read lessons -->
+              <!-- TimerCard for read lessons -->
               <ClientOnly v-if="currentLesson.type === 'read'">
-                <div class="bg-white rounded-lg border border-gray-200 p-6">
-                  <TimerBlock
-                    ref="timerRef"
-                    :seconds-total="(currentLesson.durationMin || 1.5) * 60"
-                    :on-finish="onTimerFinish"
-                  />
-                </div>
+                <TimerCard
+                  ref="timerRef"
+                  :seconds-total="(currentLesson.durationMin || 2) * 60"
+                  :on-finish="onTimerFinish"
+                  :on-next="() => nextLesson && navigateToLesson(nextLesson.moduleId, nextLesson.lessonId)"
+                  :on-exit="() => navigateTo('/dashboard')"
+                  :has-next="!!nextLesson"
+                  :has-previous="!!previousLesson"
+                />
               </ClientOnly>
               
               <!-- SSR fallback for timer -->
-              <div v-else-if="currentLesson.type === 'read'" class="bg-white rounded-lg border border-gray-200 p-6">
-                <div class="flex items-center space-x-3">
+              <div v-else-if="currentLesson.type === 'read'" class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+                <div class="flex items-center justify-between">
                   <UButton
                     color="gray"
                     variant="outline"
@@ -559,63 +576,44 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                   >
                     Resume
                   </UButton>
-                  <div class="text-sm text-gray-600">
-                    Time remaining: {{ Math.floor((currentLesson.durationMin || 1.5)) }}:{{ ((currentLesson.durationMin || 1.5) % 1 * 60).toString().padStart(2, '0') }}
+                  <div class="text-lg font-medium text-gray-900">
+                    Time remaining: {{ Math.floor((currentLesson.durationMin || 2)) }}:{{ ((currentLesson.durationMin || 2) % 1 * 60).toString().padStart(2, '0') }}
                   </div>
+                  <UButton
+                    color="primary"
+                    icon="i-heroicons-arrow-right"
+                    icon-right
+                    disabled
+                  >
+                    Next
+                  </UButton>
+                </div>
+                <div class="flex items-center justify-center mt-4">
+                  <UButton
+                    color="gray"
+                    variant="ghost"
+                    icon="i-heroicons-x-mark"
+                    disabled
+                  >
+                    Exit
+                  </UButton>
+                  <span class="text-sm text-gray-600 ml-4">
+                    Time must finish before 'Next' becomes available
+                  </span>
                 </div>
               </div>
             </div>
 
             <!-- Empty state for demo modules -->
-            <div v-else class="bg-white rounded-lg border border-gray-200 p-8 text-center">
+            <div v-else class="bg-white rounded-lg border border-gray-200 p-8 md:p-10 min-h-[60vh] text-center shadow-sm">
               <UIcon name="i-heroicons-document-text" class="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 class="text-lg font-medium text-gray-900 mb-2">Demo Module</h3>
+              <h3 class="text-lg font-medium text-gray-900 mb-2">Content Coming Soon</h3>
               <p class="text-gray-600">This module is available for demonstration purposes. In a full implementation, it would contain lesson content.</p>
             </div>
           </div>
         </div>
 
-        <!-- Player Toolbar -->
-        <div class="bg-white border-t border-gray-200 px-6 py-4">
-          <div class="flex items-center justify-between">
-            <UButton
-              v-if="previousLesson"
-              @click="navigateToLesson(previousLesson.moduleId, previousLesson.lessonId)"
-              color="gray"
-              variant="outline"
-              icon="i-heroicons-arrow-left"
-            >
-              Previous
-            </UButton>
-            <div v-else></div>
-            
-            <UButton
-              to="/dashboard"
-              color="gray"
-              variant="ghost"
-              icon="i-heroicons-x-mark"
-            >
-              Exit
-            </UButton>
-            
-            <UButton
-              v-if="nextLesson"
-              @click="navigateToLesson(nextLesson.moduleId, nextLesson.lessonId)"
-              color="primary"
-              icon="i-heroicons-arrow-right"
-              icon-right
-              :disabled="!canNext"
-            >
-              Next
-            </UButton>
-            <div v-else></div>
-          </div>
-          
-          <!-- Helper text when Next is disabled -->
-          <div v-if="nextLesson && !canNext" class="text-center mt-2">
-            <p class="text-sm text-gray-500">Time must finish before 'Next' becomes available</p>
-          </div>
-        </div>
+
       </div>
     </div>
 

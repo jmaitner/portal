@@ -21,15 +21,15 @@ const props = defineProps({
       </p>
       
       <!-- Unordered List -->
-      <ul v-else-if="block.type === 'ul'" class="list-disc list-inside space-y-2 text-gray-700">
-        <li v-for="(item, itemIndex) in block.content" :key="itemIndex">
+      <ul v-else-if="block.type === 'ul'" class="list-disc list-inside space-y-3 text-gray-700 leading-relaxed">
+        <li v-for="(item, itemIndex) in block.content" :key="itemIndex" class="pl-2">
           {{ item }}
         </li>
       </ul>
       
       <!-- Ordered List -->
-      <ol v-else-if="block.type === 'ol'" class="list-decimal list-inside space-y-2 text-gray-700">
-        <li v-for="(item, itemIndex) in block.content" :key="itemIndex">
+      <ol v-else-if="block.type === 'ol'" class="list-decimal list-inside space-y-3 text-gray-700 leading-relaxed">
+        <li v-for="(item, itemIndex) in block.content" :key="itemIndex" class="pl-2">
           {{ item }}
         </li>
       </ol>

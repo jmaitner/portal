@@ -218,11 +218,8 @@ const currentDate = new Date().toLocaleDateString('en-US', {
           <span class="text-lg font-semibold text-gray-900">Road Ready Safety</span>
         </div>
         
-        <!-- Middle: Course title and breadcrumb -->
-        <div class="flex-1 text-center">
-          <h1 class="text-lg font-semibold text-gray-900">Florida Basic Driver Improvement</h1>
-          <p class="text-sm text-gray-600">My Course › FL BDI</p>
-        </div>
+                            <!-- Middle: Empty space -->
+                    <div class="flex-1"></div>
         
         <!-- Right: Progress, Support, Avatar -->
         <div class="flex items-center space-x-4">
@@ -262,14 +259,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             Continue Course
           </UButton>
           
-          <!-- Need Help Card -->
-          <div class="bg-blue-50 rounded-lg p-4 mb-6">
-            <h4 class="text-sm font-medium text-blue-900 mb-2">Need help?</h4>
-            <div class="text-xs text-blue-800 space-y-1">
-              <p>Email: info@roadreadysafety.com</p>
-              <p>Phone: (888) 885-5707</p>
-            </div>
-          </div>
+          
           
           <div class="border-t border-gray-200 pt-6">
             <!-- Roadmap -->
@@ -450,14 +440,14 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                     Try Again
                   </UButton>
                   
-                  <UButton
-                    v-if="showResults && examPassed"
-                    @click="navigateToLesson('certificate', 'cert')"
-                    color="success"
-                    class="focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                  >
-                    View Certificate
-                  </UButton>
+                                                <UButton
+                                v-if="showResults && examPassed"
+                                @click="navigateToLesson('certificate', 'cert')"
+                                color="primary"
+                                class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                              >
+                                View Certificate
+                              </UButton>
                 </div>
               </div>
             </div>

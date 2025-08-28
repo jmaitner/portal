@@ -102,18 +102,32 @@ defineExpose({
       <!-- Top Row -->
       <div class="flex items-center justify-between mb-4">
         <!-- Left: Play/Pause Button -->
-        <UButton
-          @click="toggleTimer"
-          :color="isRunning ? 'gray' : 'primary'"
-          variant="outline"
-          size="sm"
-          :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
-          :aria-pressed="isRunning"
-          :disabled="secondsRemaining <= 0"
-          class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          {{ isRunning ? 'Pause' : 'Resume' }}
-        </UButton>
+        <div class="flex flex-col items-center space-y-2">
+          <UButton
+            @click="toggleTimer"
+            :color="isRunning ? 'gray' : 'primary'"
+            variant="outline"
+            size="sm"
+            :icon="isRunning ? 'i-heroicons-pause' : 'i-heroicons-play'"
+            :aria-pressed="isRunning"
+            :disabled="secondsRemaining <= 0"
+            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            {{ isRunning ? 'Pause' : 'Resume' }}
+          </UButton>
+          
+          <!-- Exit Button Under Pause -->
+          <UButton
+            @click="onExit"
+            color="gray"
+            variant="ghost"
+            size="sm"
+            icon="i-heroicons-x-mark"
+            class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Exit
+          </UButton>
+        </div>
         
         <!-- Center: Time Remaining -->
         <div class="text-lg font-medium text-gray-900" aria-live="polite">
@@ -136,19 +150,8 @@ defineExpose({
         <div v-else class="w-16"></div>
       </div>
       
-      <!-- Bottom Row -->
-      <div class="flex items-center justify-center space-x-4">
-        <UButton
-          @click="onExit"
-          color="gray"
-          variant="ghost"
-          icon="i-heroicons-x-mark"
-          class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-          Exit
-        </UButton>
-        
-        <!-- Helper Text -->
+      <!-- Helper Text Row -->
+      <div class="flex items-center justify-center">
         <span v-if="hasNext && !isFinished" class="text-sm text-gray-600">
           Time must finish before 'Next' becomes available
         </span>

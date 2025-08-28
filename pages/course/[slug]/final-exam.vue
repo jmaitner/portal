@@ -185,7 +185,7 @@ const isSelected = (questionId, choiceIndex) => {
                 <UButton
                   v-if="showResults && examPassed"
                   to="/course/fl-bdi/certificate"
-                  color="green"
+                  color="primary"
                 >
                   View Certificate
                 </UButton>

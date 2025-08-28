@@ -1,0 +1,296 @@
+{
+  "courseId": "fl-bdi",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction & Orientation",
+      "durationMin": 120,
+      "lessons": [
+        {
+          "id": "l1",
+          "type": "read",
+          "title": "Welcome to Your Course",
+          "durationMin": 2,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Welcome"
+            },
+            {
+              "type": "p",
+              "content": "This sample lesson demonstrates the timer and controls. In the live course, your time spent here would count toward seat time."
+            },
+            {
+              "type": "ul",
+              "content": [
+                "Read through at your pace.",
+                "Pause/Resume the timer to test behavior.",
+                "When the timer finishes, 'Next' becomes available."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "l2",
+          "type": "quiz",
+          "title": "Module 1 Check",
+          "durationMin": 5,
+          "quizId": "fl-bdi-m1"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "title": "Traffic Laws & Regulations",
+      "durationMin": 120,
+      "lessons": [
+        {
+          "id": "l3",
+          "type": "read",
+          "title": "Florida Traffic Laws Overview",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Understanding Florida Traffic Laws"
+            },
+            {
+              "type": "p",
+              "content": "Florida's traffic laws are designed to ensure safety for all road users. This module covers the essential rules you need to know."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "title": "Defensive Driving Techniques",
+      "durationMin": 120,
+      "lessons": [
+        {
+          "id": "l4",
+          "type": "read",
+          "title": "Defensive Driving Fundamentals",
+          "durationMin": 25,
+          "body": [
+            {
+              "type": "h3",
+              "content": "What is Defensive Driving?"
+            },
+            {
+              "type": "p",
+              "content": "Defensive driving means being aware of potential hazards and taking action to avoid accidents before they happen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m4",
+      "title": "Alcohol & Drugs",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l5",
+          "type": "read",
+          "title": "Effects of Alcohol and Drugs",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Understanding the Risks"
+            },
+            {
+              "type": "p",
+              "content": "Alcohol and drugs significantly impair driving ability and reaction times."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m5",
+      "title": "Sharing the Road",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l6",
+          "type": "read",
+          "title": "Sharing the Road Safely",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Coexisting with Other Road Users"
+            },
+            {
+              "type": "p",
+              "content": "Learn how to safely share the road with pedestrians, cyclists, and other vehicles."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m6",
+      "title": "Hazard Recognition",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l7",
+          "type": "read",
+          "title": "Identifying Road Hazards",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Common Road Hazards"
+            },
+            {
+              "type": "p",
+              "content": "Develop skills to recognize and respond to various road hazards."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m7",
+      "title": "Adverse Conditions",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l8",
+          "type": "read",
+          "title": "Driving in Adverse Conditions",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Weather and Road Conditions"
+            },
+            {
+              "type": "p",
+              "content": "Learn how to safely navigate through rain, fog, and other challenging conditions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m8",
+      "title": "Distractions & Inattention",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l9",
+          "type": "read",
+          "title": "Avoiding Distractions",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Staying Focused"
+            },
+            {
+              "type": "p",
+              "content": "Understand the dangers of distracted driving and how to maintain focus."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m9",
+      "title": "Speed Management",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l10",
+          "type": "read",
+          "title": "Managing Your Speed",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Speed Control"
+            },
+            {
+              "type": "p",
+              "content": "Learn proper speed management techniques for different road conditions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m10",
+      "title": "Intersections & Parking",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l11",
+          "type": "read",
+          "title": "Navigating Intersections",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Intersection Safety"
+            },
+            {
+              "type": "p",
+              "content": "Master the skills needed to safely navigate intersections and parking situations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m11",
+      "title": "Collisions & Reporting",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l12",
+          "type": "read",
+          "title": "What to Do After a Collision",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Post-Collision Procedures"
+            },
+            {
+              "type": "p",
+              "content": "Learn the proper steps to take if you're involved in a traffic collision."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m12",
+      "title": "Driver Responsibility & Attitude",
+      "durationMin": 90,
+      "lessons": [
+        {
+          "id": "l13",
+          "type": "read",
+          "title": "Being a Responsible Driver",
+          "durationMin": 20,
+          "body": [
+            {
+              "type": "h3",
+              "content": "Driver Responsibility"
+            },
+            {
+              "type": "p",
+              "content": "Understand your responsibilities as a driver and how attitude affects safety."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

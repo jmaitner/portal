@@ -1,0 +1,17 @@
+{
+  "id": "fl-bdi",
+  "slug": "fl-bdi",
+  "title": "Florida Basic Driver Improvement",
+  "state": "FL",
+  "durationMin": 240,
+  "passPercent": 80,
+  "summary": "Complete your Florida Basic Driver Improvement course to satisfy court requirements and improve your driving record.",
+  "meta": {
+    "firstModuleId": "m1",
+    "firstLessonId": "l1",
+    "totalModules": 12,
+    "demoProgressPercent": 8,
+    "demoCompletedModules": 1,
+    "demoMinutesRemaining": 180
+  }
+}

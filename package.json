@@ -1,0 +1,20 @@
+{
+  "name": "portal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt generate",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "npx http-server dist -p 4173 -c-1",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "nuxt": "^3.10.0"
+  },
+  "dependencies": {
+    "@nuxt/ui-pro": "^3.3.2",
+    "@heroicons/vue": "^2.0.18"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "What is the speed limit in a Florida school zone when children are present?",
+      "choices": [
+        "15 mph",
+        "20 mph", 
+        "25 mph",
+        "30 mph"
+      ],
+      "answerIndex": 1,
+      "rationale": "The speed limit in Florida school zones is 20 mph when children are present. This helps ensure the safety of children walking to and from school."
+    },
+    {
+      "id": "q2",
+      "prompt": "Which of the following is NOT a key principle of defensive driving?",
+      "choices": [
+        "Maintaining a safe following distance",
+        "Scanning the road ahead for hazards",
+        "Driving at the maximum speed limit at all times",
+        "Being prepared for other drivers' mistakes"
+      ],
+      "answerIndex": 2,
+      "rationale": "Driving at the maximum speed limit at all times is not a defensive driving principle. Defensive drivers adjust their speed based on conditions and hazards."
+    },
+    {
+      "id": "q3",
+      "prompt": "What should you do when approaching an intersection with a flashing yellow light?",
+      "choices": [
+        "Stop completely and wait for a green light",
+        "Proceed with caution",
+        "Speed up to get through quickly",
+        "Ignore the light and continue driving"
+      ],
+      "answerIndex": 1,
+      "rationale": "A flashing yellow light means proceed with caution. You should slow down and be prepared to stop if necessary."
+    },
+    {
+      "id": "q4",
+      "prompt": "What is the minimum blood alcohol concentration (BAC) for a DUI conviction in Florida?",
+      "choices": [
+        "0.05%",
+        "0.08%",
+        "0.10%",
+        "0.15%"
+      ],
+      "answerIndex": 1,
+      "rationale": "In Florida, the legal limit for blood alcohol concentration is 0.08%. Driving with a BAC of 0.08% or higher constitutes a DUI."
+    },
+    {
+      "id": "q5",
+      "prompt": "When should you use your high beam headlights?",
+      "choices": [
+        "Always when driving at night",
+        "Only when there is no oncoming traffic and no vehicles ahead",
+        "When driving in fog or rain",
+        "When driving in residential areas"
+      ],
+      "answerIndex": 1,
+      "rationale": "High beam headlights should only be used when there is no oncoming traffic and no vehicles ahead. They can blind other drivers and should be dimmed when approaching other vehicles."
+    }
+  ]
+}

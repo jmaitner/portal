@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "prompt": "What is the speed limit in a Florida school zone when children are present?",
+      "choices": [
+        "15 mph",
+        "20 mph", 
+        "25 mph",
+        "30 mph"
+      ],
+      "answerIndex": 1,
+      "rationale": "The speed limit in Florida school zones is 20 mph when children are present. This helps ensure the safety of children walking to and from school."
+    },
+    {
+      "id": "q2",
+      "prompt": "Which of the following is NOT a key principle of defensive driving?",
+      "choices": [
+        "Maintaining a safe following distance",
+        "Scanning the road ahead for hazards",
+        "Driving at the maximum speed limit at all times",
+        "Being prepared for other drivers' mistakes"
+      ],
+      "answerIndex": 2,
+      "rationale": "Driving at the maximum speed limit at all times is not a defensive driving principle. Defensive drivers adjust their speed based on conditions and hazards."
+    },
+    {
+      "id": "q3",
+      "prompt": "What should you do when approaching an intersection with a flashing yellow light?",
+      "choices": [
+        "Stop completely and wait for a green light",
+        "Proceed with caution",
+        "Speed up to get through quickly",
+        "Ignore the light and continue driving"
+      ],
+      "answerIndex": 1,
+      "rationale": "A flashing yellow light means proceed with caution. You should slow down and be prepared to stop if necessary."
+    }
+  ]
+}

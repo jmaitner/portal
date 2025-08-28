@@ -27,13 +27,13 @@
       </div>
     </header>
 
-    <!-- Main Content -->
+        <!-- Main Content -->
     <main class="container mx-auto max-w-4xl px-6 py-8">
-    <div class="space-y-8">
-      <div class="text-center">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">Support</h1>
-        <p class="text-lg text-gray-600">We're here to help you with any questions about your course.</p>
-      </div>
+      <div class="space-y-8">
+        <div class="text-center">
+          <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">Support</h1>
+          <p class="text-base lg:text-lg text-gray-600">We're here to help you with any questions about your course.</p>
+        </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Contact Information -->

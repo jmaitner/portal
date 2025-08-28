@@ -44,6 +44,9 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/course/**': { prerender: false }
+    '/course/**': { prerender: false },
+    '/': { prerender: true },
+    '/support': { prerender: true },
+    '/dashboard': { prerender: true }
   }
 })

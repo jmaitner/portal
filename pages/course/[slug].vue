@@ -289,7 +289,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                 <UIcon 
                   :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
                          item.status === 'complete' ? 'i-heroicons-check-circle' : 
-                         item.status === 'in-progress' ? 'i-heroicons-circle' : 
+                         item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
                          'i-heroicons-circle-stack'"
                   class="w-4 h-4 flex-shrink-0"
                   :class="item.status === 'locked' ? 'text-gray-400' : 
@@ -678,7 +678,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
               <UIcon 
                 :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
                        item.status === 'complete' ? 'i-heroicons-check-circle' : 
-                       item.status === 'in-progress' ? 'i-heroicons-circle' : 
+                       item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
                        'i-heroicons-circle-stack'"
                 class="w-4 h-4 flex-shrink-0"
                 :class="item.status === 'locked' ? 'text-gray-400' : 

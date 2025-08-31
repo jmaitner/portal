@@ -210,36 +210,8 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <header class="bg-white border-b border-gray-200">
-      <div class="flex items-center justify-between px-6 py-4">
-        <!-- Left: Logo -->
-        <div class="flex items-center space-x-3">
-          <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" aria-hidden="true" />
-          <span class="text-lg font-semibold text-gray-900">Road Ready Safety</span>
-        </div>
-        
-                            <!-- Middle: Empty space -->
-                    <div class="flex-1"></div>
-        
-        <!-- Right: Progress, Support, Avatar -->
-        <div class="flex items-center space-x-4">
-          <div class="flex items-center space-x-2 bg-blue-50 px-3 py-1 rounded-full">
-            <span class="text-sm font-medium text-blue-700">{{ course.meta.demoProgressPercent }}%</span>
-          </div>
-          
-          <NuxtLink to="/support" class="text-gray-600 hover:text-gray-900 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
-            Support
-          </NuxtLink>
-          
-          <div class="relative">
-            <button class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-              <UIcon name="i-heroicons-user" class="w-4 h-4 text-gray-600" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
+    <HeaderBar />
+    
     <!-- Main Content -->
     <div class="flex">
                         <!-- Left Rail -->
@@ -307,7 +279,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                          'i-heroicons-circle-stack'"
                   class="w-4 h-4 flex-shrink-0"
                   :class="item.status === 'locked' ? 'text-gray-400' : 
-                         item.status === 'complete' ? 'text-green-500' : 
+                         item.status === 'complete' ? 'text-blue-500' : 
                          item.status === 'in-progress' ? 'text-blue-500' : 
                          'text-gray-300'"
                 />
@@ -562,48 +534,37 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                   :seconds-total="(currentLesson.durationMin || 2) * 60"
                   :on-finish="onTimerFinish"
                   :on-next="() => nextLesson && navigateToLesson(nextLesson.moduleId, nextLesson.lessonId)"
-                  :on-exit="() => navigateTo('/dashboard')"
                   :has-next="!!nextLesson"
-                  :has-previous="!!previousLesson"
                 />
               </ClientOnly>
               
               <!-- SSR fallback for timer -->
-              <div v-else-if="currentLesson.type === 'read'" class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
+              <div v-else-if="currentLesson.type === 'read'" class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-6 shadow-lg">
                 <div class="flex items-center justify-between">
-                  <UButton
-                    color="gray"
-                    variant="outline"
-                    size="sm"
-                    icon="i-heroicons-play"
-                    disabled
-                  >
-                    Resume
-                  </UButton>
-                  <div class="text-lg font-medium text-gray-900">
-                    Time remaining: {{ Math.floor((currentLesson.durationMin || 2)) }}:{{ ((currentLesson.durationMin || 2) % 1 * 60).toString().padStart(2, '0') }}
+                  <div class="w-16"></div>
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-900 mb-1">
+                      {{ Math.floor((currentLesson.durationMin || 2)) }}:{{ ((currentLesson.durationMin || 2) % 1 * 60).toString().padStart(2, '0') }}
+                    </div>
+                    <div class="text-sm text-blue-700 font-medium">
+                      Time Remaining
+                    </div>
+                    <div class="mt-3 w-32 mx-auto">
+                      <div class="bg-blue-200 rounded-full h-2">
+                        <div class="bg-blue-600 h-2 rounded-full w-0"></div>
+                      </div>
+                    </div>
                   </div>
                   <UButton
-                    color="primary"
+                    color="gray"
                     icon="i-heroicons-arrow-right"
                     icon-right
                     disabled
+                    size="lg"
+                    class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md"
                   >
                     Next
                   </UButton>
-                </div>
-                <div class="flex items-center justify-center mt-4">
-                  <UButton
-                    color="gray"
-                    variant="ghost"
-                    icon="i-heroicons-x-mark"
-                    disabled
-                  >
-                    Exit
-                  </UButton>
-                  <span class="text-sm text-gray-600 ml-4">
-                    Time must finish before 'Next' becomes available
-                  </span>
                 </div>
               </div>
             </div>
@@ -696,7 +657,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                        'i-heroicons-circle-stack'"
                 class="w-4 h-4 flex-shrink-0"
                 :class="item.status === 'locked' ? 'text-gray-400' : 
-                       item.status === 'complete' ? 'text-green-500' : 
+                       item.status === 'complete' ? 'text-blue-500' : 
                        item.status === 'in-progress' ? 'text-blue-500' : 
                        'text-gray-300'"
               />

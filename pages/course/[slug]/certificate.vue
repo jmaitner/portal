@@ -36,6 +36,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             :value="course.meta.demoProgressPercent" 
             :max="100"
             class="w-32"
+            color="primary"
           />
           <span class="text-sm text-gray-600">{{ course.meta.demoProgressPercent }}%</span>
         </div>

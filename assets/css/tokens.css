@@ -35,3 +35,23 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
 }
+
+/* Target Nuxt UI progress bar fill specifically */
+.progress-bar-fill,
+[role="progressbar"] > div,
+.progress-bar > div,
+.progress-fill {
+  background-color: #2563EB !important;
+}
+
+/* Keep progress bar background light gray */
+.progress-bar,
+[role="progressbar"] {
+  background-color: #E5E7EB !important;
+}
+
+/* Target specific Nuxt UI progress components */
+[data-color="primary"] .progress-bar-fill,
+.progress-bar[data-color="primary"] > div {
+  background-color: #2563EB !important;
+}

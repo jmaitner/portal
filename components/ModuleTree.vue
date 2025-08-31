@@ -80,7 +80,7 @@ const getStatusIcon = (status, kind) => {
 // Get status color
 const getStatusColor = (status) => {
   if (status === 'locked') return 'text-gray-400'
-  if (status === 'complete') return 'text-green-500'
+  if (status === 'complete') return 'text-blue-500'
   if (status === 'in-progress') return 'text-blue-500'
   return 'text-gray-300'
 }

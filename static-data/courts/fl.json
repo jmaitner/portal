@@ -1,0 +1,82 @@
+[
+  {
+    "id": "miami-dade-1",
+    "name": "Miami-Dade County Court",
+    "county": "Miami-Dade"
+  },
+  {
+    "id": "miami-dade-2",
+    "name": "Miami-Dade Circuit Court",
+    "county": "Miami-Dade"
+  },
+  {
+    "id": "broward-1",
+    "name": "Broward County Court",
+    "county": "Broward"
+  },
+  {
+    "id": "broward-2",
+    "name": "Broward Circuit Court",
+    "county": "Broward"
+  },
+  {
+    "id": "orange-1",
+    "name": "Orange County Court",
+    "county": "Orange"
+  },
+  {
+    "id": "orange-2",
+    "name": "Orange Circuit Court",
+    "county": "Orange"
+  },
+  {
+    "id": "hillsborough-1",
+    "name": "Hillsborough County Court",
+    "county": "Hillsborough"
+  },
+  {
+    "id": "hillsborough-2",
+    "name": "Hillsborough Circuit Court",
+    "county": "Hillsborough"
+  },
+  {
+    "id": "pinellas-1",
+    "name": "Pinellas County Court",
+    "county": "Pinellas"
+  },
+  {
+    "id": "pinellas-2",
+    "name": "Pinellas Circuit Court",
+    "county": "Pinellas"
+  },
+  {
+    "id": "palm-beach-1",
+    "name": "Palm Beach County Court",
+    "county": "Palm Beach"
+  },
+  {
+    "id": "palm-beach-2",
+    "name": "Palm Beach Circuit Court",
+    "county": "Palm Beach"
+  },
+  {
+    "id": "duval-1",
+    "name": "Duval County Court",
+    "county": "Duval"
+  },
+  {
+    "id": "duval-2",
+    "name": "Duval Circuit Court",
+    "county": "Duval"
+  },
+  {
+    "id": "lee-1",
+    "name": "Lee County Court",
+    "county": "Lee"
+  },
+  {
+    "id": "lee-2",
+    "name": "Lee Circuit Court",
+    "county": "Lee"
+  }
+]

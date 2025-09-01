@@ -600,7 +600,10 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 
 
     <!-- Mobile Rail Overlay -->
-    <div v-if="showMobileRail" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40" @click="showMobileRail = false">
+    <div v-if="showMobileRail" class="lg:hidden fixed inset-0 z-40" @click="showMobileRail = false">
+      <!-- Semi-transparent overlay for the right side only -->
+      <div class="absolute right-0 top-0 h-full w-80 bg-black bg-opacity-50" @click="showMobileRail = false"></div>
+      <!-- White sidebar -->
       <div class="absolute right-0 top-0 h-full w-80 bg-white shadow-xl" @click.stop>
         <div class="p-6">
           <div class="flex items-center justify-between mb-4">

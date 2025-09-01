@@ -24,8 +24,8 @@
       </div>
     </div>
 
-    <!-- Desktop Left Rail (hidden on mobile) -->
-    <div class="hidden lg:block lg:absolute lg:left-0 lg:top-0 lg:w-64 lg:pt-32">
+    <!-- Desktop Right Rail (hidden on mobile) -->
+    <div class="hidden lg:block lg:absolute lg:right-0 lg:top-0 lg:w-64 lg:pt-32">
       <div class="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
         <h3 class="text-sm font-medium text-gray-700 mb-3">Enrollment Progress</h3>
         <div class="space-y-2">

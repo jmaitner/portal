@@ -225,7 +225,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                                 <!-- Continue Course / Save & Exit CTA -->
                       <UButton 
                         v-if="currentModuleId === 'm1' && currentLessonId === 'l1'"
-                        @click="() => navigateTo('/dashboard')"
+                        @click="() => navigateTo('/courses')"
                         color="primary"
                         size="lg"
                         block

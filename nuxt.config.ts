@@ -49,11 +49,14 @@ export default defineNuxtConfig({
     '/support': { prerender: true },
     '/dashboard': { prerender: true },
     '/login': { prerender: true },
-    '/enroll/**': { prerender: false }
+    '/enroll/**': { prerender: false },
+    '/courses': { prerender: true },
+    '/certificate/**': { prerender: false },
+    '/account/**': { prerender: false }
   },
   nitro: {
     prerender: {
-      routes: ['/course/fl-bdi', '/login', '/enroll/fl-bdi']
+      routes: ['/course/fl-bdi', '/login', '/enroll/fl-bdi', '/courses']
     }
   }
 })

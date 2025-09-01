@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-gray-50">
-    <div class="relative max-w-[760px] mx-auto px-4 py-8 lg:py-12">
+    <div class="relative max-w-[760px] mx-auto px-4 py-8 lg:py-12 lg:pr-80">
       <!-- Stepper Component -->
       <EnrollStepper 
         :current-step-index="currentStepIndex"

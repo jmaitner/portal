@@ -19,6 +19,11 @@
             8%
           </div>
           
+          <!-- My Courses Link -->
+          <NuxtLink to="/courses" class="text-gray-600 hover:text-gray-900 font-medium text-sm">
+            My Courses
+          </NuxtLink>
+          
           <!-- Support Link -->
           <NuxtLink to="/support" class="text-gray-600 hover:text-gray-900 font-medium text-sm">
             Support
@@ -32,11 +37,9 @@
             <UIcon name="i-heroicons-bars-3" class="w-4 h-4 text-gray-600" />
           </button>
           
-          <!-- Desktop Avatar (hidden on mobile) -->
-          <div class="hidden lg:block relative">
-            <button class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-              <UIcon name="i-heroicons-user" class="w-4 h-4 text-gray-600" />
-            </button>
+          <!-- Desktop Account Menu (hidden on mobile) -->
+          <div class="hidden lg:block">
+            <AccountMenu />
           </div>
         </div>
       </div>

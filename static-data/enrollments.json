@@ -1,0 +1,86 @@
+[
+  {
+    "courseId": "fl-bdi",
+    "slug": "fl-bdi",
+    "title": "Florida Basic Driver Improvement",
+    "state": "FL",
+    "status": "in_progress",
+    "progressPercent": 8,
+    "dateStarted": "2025-08-10",
+    "dateCompleted": null,
+    "submission": {
+      "mode": "auto",
+      "sentAt": null,
+      "instructions": null,
+      "link": null
+    },
+    "certificate": {
+      "available": false,
+      "id": null,
+      "url": null
+    }
+  },
+  {
+    "courseId": "tx-dadap",
+    "slug": "tx-dadap",
+    "title": "Texas Defensive Driving (Demo)",
+    "state": "TX",
+    "status": "not_started",
+    "progressPercent": 0,
+    "dateStarted": null,
+    "dateCompleted": null,
+    "submission": {
+      "mode": "manual",
+      "sentAt": null,
+      "instructions": "Your county requires you to submit your completion certificate. Download it after completion and bring/email it to the clerk.",
+      "link": "/support?topic=submission"
+    },
+    "certificate": {
+      "available": false,
+      "id": null,
+      "url": null
+    }
+  },
+  {
+    "courseId": "mi-bdi",
+    "slug": "mi-bdi",
+    "title": "Michigan Basic Driver Improvement (Demo)",
+    "state": "MI",
+    "status": "completed",
+    "progressPercent": 100,
+    "dateStarted": "2025-08-01",
+    "dateCompleted": "2025-08-03",
+    "submission": {
+      "mode": "auto",
+      "sentAt": "2025-08-03T14:05:00Z",
+      "instructions": null,
+      "link": null
+    },
+    "certificate": {
+      "available": true,
+      "id": "DEMO-123456",
+      "url": "/certificate/DEMO-123456"
+    }
+  },
+  {
+    "courseId": "fl-tsi",
+    "slug": "fl-tsi",
+    "title": "Florida Traffic School Improvement",
+    "state": "FL",
+    "status": "not_started",
+    "progressPercent": 0,
+    "dateStarted": null,
+    "dateCompleted": null,
+    "submission": {
+      "mode": "none",
+      "sentAt": null,
+      "instructions": null,
+      "link": null
+    },
+    "certificate": {
+      "available": false,
+      "id": null,
+      "url": null
+    }
+  }
+]

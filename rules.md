@@ -42,6 +42,13 @@
 - **Current: `['/course/fl-bdi']`**
 - **Verify `/dist/course/fl-bdi/index.html` exists after build**
 
+### **8. Git Ignore Standards**
+- **Comprehensive `.gitignore` for Nuxt 3 + Mac development**
+- **Includes: build outputs, node_modules, logs, cache files, OS files**
+- **Cursor IDE specific ignores: `.cursor/`, `.cursor-rules`**
+- **Environment files: `.env*` (except `.env.example`)**
+- **NEVER commit: API keys, secrets, build artifacts, or temporary files**
+
 ## 🔧 **Implementation Details**
 
 ### **Header Structure (layouts/default.vue only)**

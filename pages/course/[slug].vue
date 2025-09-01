@@ -212,6 +212,27 @@ const currentDate = new Date().toLocaleDateString('en-US', {
     <!-- Header -->
     <HeaderBar />
     
+    <!-- Mobile Header with Course Title -->
+    <div class="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-16 z-30">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" />
+          <div>
+            <h1 class="text-lg font-semibold text-gray-900">Florida Basic Driver Improvement</h1>
+            <p class="text-sm text-gray-600">Course Progress</p>
+          </div>
+        </div>
+        <UButton
+          @click="showMobileRail = !showMobileRail"
+          color="gray"
+          variant="ghost"
+          icon="i-heroicons-bars-3"
+          size="sm"
+          class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        />
+      </div>
+    </div>
+    
     <!-- Main Content -->
     <div class="flex">
                         <!-- Left Rail -->
@@ -224,8 +245,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                       <UButton 
                         v-if="currentModuleId === 'm1' && currentLessonId === 'l1'"
                         @click="() => navigateTo('/dashboard')"
-                        color="gray"
-                        variant="outline"
+                        color="primary"
                         size="lg"
                         block
                         class="mb-6"
@@ -582,37 +602,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
       </div>
     </div>
 
-                    <!-- Mobile Rail Toggle -->
-                <div class="lg:hidden fixed bottom-4 right-4 z-50">
-                  <UButton
-                    @click="showMobileRail = !showMobileRail"
-                    color="primary"
-                    icon="i-heroicons-bars-3"
-                    size="lg"
-                    class="rounded-full shadow-lg"
-                  />
-                </div>
 
-                <!-- Mobile Header with Course Title -->
-                <div class="lg:hidden bg-white border-b border-gray-200 px-4 py-3">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                      <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" />
-                      <div>
-                        <h1 class="text-lg font-semibold text-gray-900">Florida Basic Driver Improvement</h1>
-                        <p class="text-sm text-gray-600">Course Progress</p>
-                      </div>
-                    </div>
-                    <UButton
-                      @click="showMobileRail = !showMobileRail"
-                      color="gray"
-                      variant="ghost"
-                      icon="i-heroicons-bars-3"
-                      size="sm"
-                      class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                    />
-                  </div>
-                </div>
 
     <!-- Mobile Rail Overlay -->
     <div v-if="showMobileRail" class="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40" @click="showMobileRail = false">

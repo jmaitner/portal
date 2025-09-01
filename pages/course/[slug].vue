@@ -161,10 +161,18 @@ const handleRoadmapClick = (item) => {
     // Navigate to certificate
     navigateToLesson('certificate', 'cert')
   } else {
-    // Navigate to first lesson of module
-    const firstLesson = item.lessons?.[0]
-    if (firstLesson) {
-      navigateToLesson(item.id, firstLesson.id)
+    // For modules, toggle accordion if already in this module, otherwise navigate to first lesson
+    if (item.id === currentModuleId.value) {
+      // Toggle accordion for current module
+      showModuleSections.value = !showModuleSections.value
+    } else {
+      // Navigate to first lesson of module
+      const firstLesson = item.lessons?.[0]
+      if (firstLesson) {
+        navigateToLesson(item.id, firstLesson.id)
+        // Auto-expand accordion when entering a new module
+        showModuleSections.value = true
+      }
     }
   }
 }
@@ -256,95 +264,117 @@ const currentDate = new Date().toLocaleDateString('en-US', {
             <!-- Roadmap -->
             <h3 class="text-sm font-medium text-gray-700 mb-4">Course Progress</h3>
             <div class="space-y-1">
-              <button
-                v-for="item in roadmapItems"
-                :key="item.id"
-                @click="handleRoadmapClick(item)"
-                class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
-                :class="{
-                  'bg-blue-50 text-blue-700 border-l-2 border-blue-500': 
-                    (item.kind === 'module' && item.id === currentModuleId) ||
-                    (item.kind === 'exam' && currentModuleId === 'final-exam') ||
-                    (item.kind === 'certificate' && currentModuleId === 'certificate'),
-                  'text-gray-600 hover:text-gray-900 hover:bg-gray-50': 
-                    !(item.kind === 'module' && item.id === currentModuleId) && item.status !== 'locked',
-                  'text-gray-400 cursor-not-allowed': item.status === 'locked'
-                }"
-              >
-                <!-- Number -->
-                <div class="flex-shrink-0 w-6 text-left font-medium text-gray-500">
-                  {{ item.number }}.
+              <div v-for="item in roadmapItems" :key="item.id">
+                <!-- Module Item with Accordion -->
+                <div v-if="item.kind === 'module'">
+                  <!-- Module Header -->
+                  <button
+                    @click="handleRoadmapClick(item)"
+                    class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                    :class="{
+                      'bg-blue-50 text-blue-700 border-l-2 border-blue-500': item.id === currentModuleId && !showModuleSections,
+                      'text-gray-600 hover:text-gray-900 hover:bg-gray-50': (item.id !== currentModuleId || showModuleSections) && item.status !== 'locked',
+                      'text-gray-400 cursor-not-allowed': item.status === 'locked'
+                    }"
+                  >
+                    <!-- Number -->
+                    <div class="flex-shrink-0 w-6 text-left font-medium text-gray-500">
+                      {{ item.number }}.
+                    </div>
+                    
+                    <!-- Status Icon -->
+                    <UIcon 
+                      :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
+                             item.status === 'complete' ? 'i-heroicons-check-circle' : 
+                             item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
+                             'i-heroicons-circle-stack'"
+                      class="w-4 h-4 flex-shrink-0"
+                      :class="item.status === 'locked' ? 'text-gray-400' : 
+                             item.status === 'complete' ? 'text-blue-500' : 
+                             item.status === 'in-progress' ? 'text-blue-500' : 
+                             'text-gray-300'"
+                    />
+                    
+                    <!-- Title -->
+                    <span class="flex-1 font-semibold">{{ item.title }}</span>
+                    
+                    <!-- Chevron for expandable modules -->
+                    <UIcon 
+                      v-if="item.id === currentModuleId"
+                      :name="showModuleSections ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                      class="w-4 h-4 text-gray-400"
+                    />
+                    
+                    <!-- Estimated Time (for modules) -->
+                    <span v-else class="text-xs text-gray-400">
+                      {{ item.lessons?.length || 2 }} min
+                    </span>
+                  </button>
+                  
+                  <!-- Module Lessons Accordion -->
+                  <div v-if="item.id === currentModuleId && showModuleSections" class="ml-9 mt-1 space-y-1">
+                                         <button
+                       v-for="lesson in item.lessons"
+                       :key="lesson.id"
+                       @click="navigateToLesson(item.id, lesson.id)"
+                       class="flex items-center space-x-3 py-2 px-3 rounded-md text-xs transition-colors min-h-[36px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                       :class="{
+                         'bg-blue-50 text-blue-700 border-l-2 border-blue-500': lesson.id === currentLessonId,
+                         'text-gray-600 hover:text-gray-900 hover:bg-gray-50': lesson.id !== currentLessonId
+                       }"
+                     >
+                       <!-- Title (no icon) -->
+                       <span class="flex-1 font-normal">{{ lesson.title }}</span>
+                       
+                       <!-- Duration -->
+                       <span class="text-xs text-gray-400">
+                         {{ lesson.durationMin || 2 }} min
+                       </span>
+                     </button>
+                  </div>
                 </div>
                 
-                <!-- Status Icon -->
-                <UIcon 
-                  :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
-                         item.status === 'complete' ? 'i-heroicons-check-circle' : 
-                         item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
-                         'i-heroicons-circle-stack'"
-                  class="w-4 h-4 flex-shrink-0"
-                  :class="item.status === 'locked' ? 'text-gray-400' : 
-                         item.status === 'complete' ? 'text-blue-500' : 
-                         item.status === 'in-progress' ? 'text-blue-500' : 
-                         'text-gray-300'"
-                />
-                
-                <!-- Title -->
-                <span class="flex-1">{{ item.title }}</span>
-                
-                <!-- Estimated Time (for modules) -->
-                <span v-if="item.kind === 'module'" class="text-xs text-gray-400">
-                  {{ item.lessons?.length || 2 }} min
-                </span>
-              </button>
+                <!-- Non-module items (exam, certificate) -->
+                <button
+                  v-else
+                  @click="handleRoadmapClick(item)"
+                  class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                  :class="{
+                    'bg-blue-50 text-blue-700 border-l-2 border-blue-500': 
+                      (item.kind === 'exam' && currentModuleId === 'final-exam') ||
+                      (item.kind === 'certificate' && currentModuleId === 'certificate'),
+                    'text-gray-600 hover:text-gray-900 hover:bg-gray-50': 
+                      !((item.kind === 'exam' && currentModuleId === 'final-exam') ||
+                        (item.kind === 'certificate' && currentModuleId === 'certificate')) && item.status !== 'locked',
+                    'text-gray-400 cursor-not-allowed': item.status === 'locked'
+                  }"
+                >
+                  <!-- Number -->
+                  <div class="flex-shrink-0 w-6 text-left font-medium text-gray-500">
+                    {{ item.number }}.
+                  </div>
+                  
+                  <!-- Status Icon -->
+                  <UIcon 
+                    :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
+                           item.status === 'complete' ? 'i-heroicons-check-circle' : 
+                           item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
+                           'i-heroicons-circle-stack'"
+                    class="w-4 h-4 flex-shrink-0"
+                    :class="item.status === 'locked' ? 'text-gray-400' : 
+                           item.status === 'complete' ? 'text-blue-500' : 
+                           item.status === 'in-progress' ? 'text-blue-500' : 
+                           'text-gray-300'"
+                  />
+                  
+                  <!-- Title -->
+                  <span class="flex-1">{{ item.title }}</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Module Sections Accordion -->
-          <div v-if="currentModule && currentModuleId !== 'final-exam' && currentModuleId !== 'certificate'" class="border-t border-gray-200 pt-6">
-            <button
-              @click="showModuleSections = !showModuleSections"
-              class="flex items-center justify-between w-full text-left py-3 px-3 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
-            >
-              <span class="flex items-center space-x-2">
-                <UIcon name="i-heroicons-list-bullet" class="w-4 h-4" />
-                <span>{{ currentModule.title }} Sections</span>
-              </span>
-              <UIcon 
-                :name="showModuleSections ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                class="w-4 h-4 text-gray-400"
-              />
-            </button>
-            
-            <!-- Accordion Content -->
-            <div v-if="showModuleSections" class="mt-2 space-y-1">
-              <button
-                v-for="lesson in currentModule.lessons"
-                :key="lesson.id"
-                @click="navigateToLesson(currentModuleId, lesson.id)"
-                class="flex items-center space-x-3 py-2 px-6 rounded-md text-sm transition-colors min-h-[40px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
-                :class="{
-                  'bg-blue-50 text-blue-700 border-l-2 border-blue-500': lesson.id === currentLessonId,
-                  'text-gray-600 hover:text-gray-900 hover:bg-gray-50': lesson.id !== currentLessonId
-                }"
-              >
-                <!-- Lesson Type Icon -->
-                <UIcon 
-                  :name="lesson.type === 'quiz' ? 'i-heroicons-question-mark-circle' : 'i-heroicons-document-text'"
-                  class="w-4 h-4 flex-shrink-0"
-                  :class="lesson.id === currentLessonId ? 'text-blue-500' : 'text-gray-400'"
-                />
-                
-                <!-- Title -->
-                <span class="flex-1">{{ lesson.title }}</span>
-                
-                <!-- Duration -->
-                <span class="text-xs text-gray-400">
-                  {{ lesson.durationMin || 2 }} min
-                </span>
-              </button>
-            </div>
-          </div>
+
         </div>
       </div>
 
@@ -676,86 +706,105 @@ const currentDate = new Date().toLocaleDateString('en-US', {
           
           <!-- Mobile roadmap -->
           <div class="space-y-1">
-            <button
-              v-for="item in roadmapItems"
-              :key="item.id"
-              @click="handleRoadmapClick(item)"
-              class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left"
-              :class="{
-                'bg-blue-50 text-blue-700 border-l-2 border-blue-500': 
-                  (item.kind === 'module' && item.id === currentModuleId) ||
-                  (item.kind === 'exam' && currentModuleId === 'final-exam') ||
-                  (item.kind === 'certificate' && currentModuleId === 'certificate'),
-                'text-gray-600 hover:text-gray-900 hover:bg-gray-50': 
-                  !(item.kind === 'module' && item.id === currentModuleId) && item.status !== 'locked',
-                'text-gray-400 cursor-not-allowed': item.status === 'locked'
-              }"
-            >
-              <div class="flex-shrink-0 w-6 text-left font-medium text-gray-500">
-                {{ item.number }}.
+            <div v-for="item in roadmapItems" :key="item.id">
+              <!-- Module Item with Accordion -->
+              <div v-if="item.kind === 'module'">
+                <!-- Module Header -->
+                <button
+                  @click="handleRoadmapClick(item)"
+                  class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left"
+                  :class="{
+                    'bg-blue-50 text-blue-700 border-l-2 border-blue-500': item.id === currentModuleId && !showModuleSections,
+                    'text-gray-600 hover:text-gray-900 hover:bg-gray-50': (item.id !== currentModuleId || showModuleSections) && item.status !== 'locked',
+                    'text-gray-400 cursor-not-allowed': item.status === 'locked'
+                  }"
+                >
+                  <div class="flex-shrink-0 w-6 text-left font-medium text-gray-500">
+                    {{ item.number }}.
+                  </div>
+                  
+                  <UIcon 
+                    :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
+                           item.status === 'complete' ? 'i-heroicons-check-circle' : 
+                           item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
+                           'i-heroicons-circle-stack'"
+                    class="w-4 h-4 flex-shrink-0"
+                    :class="item.status === 'locked' ? 'text-gray-400' : 
+                           item.status === 'complete' ? 'text-blue-500' : 
+                           item.status === 'in-progress' ? 'text-blue-500' : 
+                           'text-gray-300'"
+                  />
+                  
+                  <span class="flex-1 font-semibold">{{ item.title }}</span>
+                  
+                  <!-- Chevron for expandable modules -->
+                  <UIcon 
+                    v-if="item.id === currentModuleId"
+                    :name="showModuleSections ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                    class="w-4 h-4 text-gray-400"
+                  />
+                </button>
+                
+                <!-- Module Lessons Accordion -->
+                <div v-if="item.id === currentModuleId && showModuleSections" class="ml-9 mt-1 space-y-1">
+                  <button
+                    v-for="lesson in item.lessons"
+                    :key="lesson.id"
+                    @click="() => { navigateToLesson(item.id, lesson.id); showMobileRail = false; }"
+                    class="flex items-center space-x-3 py-2 px-3 rounded-md text-xs transition-colors min-h-[36px] w-full text-left"
+                    :class="{
+                      'bg-blue-50 text-blue-700 border-l-2 border-blue-500': lesson.id === currentLessonId,
+                      'text-gray-600 hover:text-gray-900 hover:bg-gray-50': lesson.id !== currentLessonId
+                    }"
+                  >
+                    <!-- Title (no icon) -->
+                    <span class="flex-1 font-normal">{{ lesson.title }}</span>
+                    
+                    <!-- Duration -->
+                    <span class="text-xs text-gray-400">
+                      {{ lesson.durationMin || 2 }} min
+                    </span>
+                  </button>
+                </div>
               </div>
               
-              <UIcon 
-                :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
-                       item.status === 'complete' ? 'i-heroicons-check-circle' : 
-                       item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
-                       'i-heroicons-circle-stack'"
-                class="w-4 h-4 flex-shrink-0"
-                :class="item.status === 'locked' ? 'text-gray-400' : 
-                       item.status === 'complete' ? 'text-blue-500' : 
-                       item.status === 'in-progress' ? 'text-blue-500' : 
-                       'text-gray-300'"
-              />
-              
-              <span class="flex-1">{{ item.title }}</span>
-            </button>
-          </div>
-
-          <!-- Mobile Module Sections Accordion -->
-          <div v-if="currentModule && currentModuleId !== 'final-exam' && currentModuleId !== 'certificate'" class="border-t border-gray-200 pt-4 mt-4">
-            <button
-              @click="showModuleSections = !showModuleSections"
-              class="flex items-center justify-between w-full text-left py-3 px-3 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors"
-            >
-              <span class="flex items-center space-x-2">
-                <UIcon name="i-heroicons-list-bullet" class="w-4 h-4" />
-                <span>{{ currentModule.title }} Sections</span>
-              </span>
-              <UIcon 
-                :name="showModuleSections ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
-                class="w-4 h-4 text-gray-400"
-              />
-            </button>
-            
-            <!-- Accordion Content -->
-            <div v-if="showModuleSections" class="mt-2 space-y-1">
+              <!-- Non-module items (exam, certificate) -->
               <button
-                v-for="lesson in currentModule.lessons"
-                :key="lesson.id"
-                @click="() => { navigateToLesson(currentModuleId, lesson.id); showMobileRail = false; }"
-                class="flex items-center space-x-3 py-2 px-6 rounded-md text-sm transition-colors min-h-[40px] w-full text-left"
+                v-else
+                @click="handleRoadmapClick(item)"
+                class="flex items-center space-x-3 py-3 px-3 rounded-md text-sm transition-colors min-h-[44px] w-full text-left"
                 :class="{
-                  'bg-blue-50 text-blue-700 border-l-2 border-blue-500': lesson.id === currentLessonId,
-                  'text-gray-600 hover:text-gray-900 hover:bg-gray-50': lesson.id !== currentLessonId
+                  'bg-blue-50 text-blue-700 border-l-2 border-blue-500': 
+                    (item.kind === 'exam' && currentModuleId === 'final-exam') ||
+                    (item.kind === 'certificate' && currentModuleId === 'certificate'),
+                  'text-gray-600 hover:text-gray-900 hover:bg-gray-50': 
+                    !((item.kind === 'exam' && currentModuleId === 'final-exam') ||
+                      (item.kind === 'certificate' && currentModuleId === 'certificate')) && item.status !== 'locked',
+                  'text-gray-400 cursor-not-allowed': item.status === 'locked'
                 }"
               >
-                <!-- Lesson Type Icon -->
+                <div class="flex-shrink-0 w-6 text-left font-medium text-gray-500">
+                  {{ item.number }}.
+                </div>
+                
                 <UIcon 
-                  :name="lesson.type === 'quiz' ? 'i-heroicons-question-mark-circle' : 'i-heroicons-document-text'"
+                  :name="item.status === 'locked' ? 'i-heroicons-lock-closed' : 
+                         item.status === 'complete' ? 'i-heroicons-check-circle' : 
+                         item.status === 'in-progress' ? 'i-heroicons-circle-stack' : 
+                         'i-heroicons-circle-stack'"
                   class="w-4 h-4 flex-shrink-0"
-                  :class="lesson.id === currentLessonId ? 'text-blue-500' : 'text-gray-400'"
+                  :class="item.status === 'locked' ? 'text-gray-400' : 
+                         item.status === 'complete' ? 'text-blue-500' : 
+                         item.status === 'in-progress' ? 'text-blue-500' : 
+                         'text-gray-300'"
                 />
                 
-                <!-- Title -->
-                <span class="flex-1">{{ lesson.title }}</span>
-                
-                <!-- Duration -->
-                <span class="text-xs text-gray-400">
-                  {{ lesson.durationMin || 2 }} min
-                </span>
+                <span class="flex-1">{{ item.title }}</span>
               </button>
             </div>
           </div>
+
+
         </div>
       </div>
     </div>

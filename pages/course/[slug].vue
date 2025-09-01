@@ -326,8 +326,15 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 
         <!-- Content Area -->
         <div class="p-4 lg:p-8 flex-1">
-          <!-- Mobile Hamburger Button (hidden on desktop) -->
-          <div class="lg:hidden mb-4">
+          <!-- Mobile Header with Logo and Menu (hidden on desktop) -->
+          <div class="lg:hidden mb-4 flex items-center justify-between">
+            <!-- Logo on the left -->
+            <div class="flex items-center space-x-3">
+              <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" />
+              <span class="text-lg font-semibold text-gray-900">Road Ready Safety</span>
+            </div>
+            
+            <!-- Menu button on the right -->
             <UButton
               @click="showMobileRail = !showMobileRail"
               color="gray"

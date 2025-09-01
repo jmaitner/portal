@@ -15,6 +15,7 @@ if (route.params.slug !== course.slug) {
 const currentModuleId = ref('m1')
 const currentLessonId = ref('l1')
 const showMobileRail = ref(false)
+const showModuleSections = ref(false) // New state for accordion
 
 // Find current module and lesson
 const currentModule = computed(() => 
@@ -37,6 +38,9 @@ watch([currentModuleId, currentLessonId], () => {
   if (timerRef.value && currentLesson.value?.type === 'read') {
     // TimerCard will auto-start when mounted
   }
+  
+  // Show module sections when entering a module
+  showModuleSections.value = true
 }, { immediate: true })
 
 // Create roadmap items
@@ -232,7 +236,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
                         class="mb-6"
                         icon="i-heroicons-bookmark"
                       >
-                        Save & Exit
+                        Last saved at {{ new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) }} {{ new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) }}
                       </UButton>
                       <UButton 
                         v-else
@@ -295,6 +299,52 @@ const currentDate = new Date().toLocaleDateString('en-US', {
               </button>
             </div>
           </div>
+
+          <!-- Module Sections Accordion -->
+          <div v-if="currentModule && currentModuleId !== 'final-exam' && currentModuleId !== 'certificate'" class="border-t border-gray-200 pt-6">
+            <button
+              @click="showModuleSections = !showModuleSections"
+              class="flex items-center justify-between w-full text-left py-3 px-3 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+            >
+              <span class="flex items-center space-x-2">
+                <UIcon name="i-heroicons-list-bullet" class="w-4 h-4" />
+                <span>{{ currentModule.title }} Sections</span>
+              </span>
+              <UIcon 
+                :name="showModuleSections ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                class="w-4 h-4 text-gray-400"
+              />
+            </button>
+            
+            <!-- Accordion Content -->
+            <div v-if="showModuleSections" class="mt-2 space-y-1">
+              <button
+                v-for="lesson in currentModule.lessons"
+                :key="lesson.id"
+                @click="navigateToLesson(currentModuleId, lesson.id)"
+                class="flex items-center space-x-3 py-2 px-6 rounded-md text-sm transition-colors min-h-[40px] w-full text-left focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+                :class="{
+                  'bg-blue-50 text-blue-700 border-l-2 border-blue-500': lesson.id === currentLessonId,
+                  'text-gray-600 hover:text-gray-900 hover:bg-gray-50': lesson.id !== currentLessonId
+                }"
+              >
+                <!-- Lesson Type Icon -->
+                <UIcon 
+                  :name="lesson.type === 'quiz' ? 'i-heroicons-question-mark-circle' : 'i-heroicons-document-text'"
+                  class="w-4 h-4 flex-shrink-0"
+                  :class="lesson.id === currentLessonId ? 'text-blue-500' : 'text-gray-400'"
+                />
+                
+                <!-- Title -->
+                <span class="flex-1">{{ lesson.title }}</span>
+                
+                <!-- Duration -->
+                <span class="text-xs text-gray-400">
+                  {{ lesson.durationMin || 2 }} min
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -312,7 +362,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
               </p>
             </div>
             <div class="flex items-center space-x-4">
-              <span class="text-sm text-gray-600">Progress</span>
+              <span class="text-sm text-gray-600">Course Progress</span>
               <UProgress 
                 :value="course.meta.demoProgressPercent" 
                 :max="100"
@@ -659,6 +709,52 @@ const currentDate = new Date().toLocaleDateString('en-US', {
               
               <span class="flex-1">{{ item.title }}</span>
             </button>
+          </div>
+
+          <!-- Mobile Module Sections Accordion -->
+          <div v-if="currentModule && currentModuleId !== 'final-exam' && currentModuleId !== 'certificate'" class="border-t border-gray-200 pt-4 mt-4">
+            <button
+              @click="showModuleSections = !showModuleSections"
+              class="flex items-center justify-between w-full text-left py-3 px-3 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors"
+            >
+              <span class="flex items-center space-x-2">
+                <UIcon name="i-heroicons-list-bullet" class="w-4 h-4" />
+                <span>{{ currentModule.title }} Sections</span>
+              </span>
+              <UIcon 
+                :name="showModuleSections ? 'i-heroicons-chevron-up' : 'i-heroicons-chevron-down'"
+                class="w-4 h-4 text-gray-400"
+              />
+            </button>
+            
+            <!-- Accordion Content -->
+            <div v-if="showModuleSections" class="mt-2 space-y-1">
+              <button
+                v-for="lesson in currentModule.lessons"
+                :key="lesson.id"
+                @click="() => { navigateToLesson(currentModuleId, lesson.id); showMobileRail = false; }"
+                class="flex items-center space-x-3 py-2 px-6 rounded-md text-sm transition-colors min-h-[40px] w-full text-left"
+                :class="{
+                  'bg-blue-50 text-blue-700 border-l-2 border-blue-500': lesson.id === currentLessonId,
+                  'text-gray-600 hover:text-gray-900 hover:bg-gray-50': lesson.id !== currentLessonId
+                }"
+              >
+                <!-- Lesson Type Icon -->
+                <UIcon 
+                  :name="lesson.type === 'quiz' ? 'i-heroicons-question-mark-circle' : 'i-heroicons-document-text'"
+                  class="w-4 h-4 flex-shrink-0"
+                  :class="lesson.id === currentLessonId ? 'text-blue-500' : 'text-gray-400'"
+                />
+                
+                <!-- Title -->
+                <span class="flex-1">{{ lesson.title }}</span>
+                
+                <!-- Duration -->
+                <span class="text-xs text-gray-400">
+                  {{ lesson.durationMin || 2 }} min
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

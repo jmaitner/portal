@@ -54,9 +54,9 @@ export default defineNuxtConfig({
     '/certificate/**': { prerender: false },
     '/account/**': { prerender: false }
   },
-  nitro: {
-    prerender: {
-      routes: ['/course/fl-bdi', '/login', '/enroll/fl-bdi', '/courses']
-    }
-  }
+                  nitro: {
+                  prerender: {
+                    routes: ['/course/fl-bdi', '/login', '/login/2fa', '/auth/2fa', '/enroll/fl-bdi', '/courses']
+                  }
+                }
 })

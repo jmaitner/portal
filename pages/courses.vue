@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-[1120px] px-4 lg:px-6 py-6 lg:py-10">
+  <div>
       <!-- Page header -->
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900">My Courses</h1>

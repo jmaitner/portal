@@ -126,7 +126,7 @@
 
 <script setup>
 definePageMeta({
-  layout: 'default'
+  layout: false
 })
 
 const form = ref({

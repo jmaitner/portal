@@ -25,9 +25,9 @@
           </NuxtLink>
           
           <!-- Support Link -->
-          <NuxtLink to="/support" class="text-gray-600 hover:text-gray-900 font-medium text-sm">
+          <a href="https://roadreadysafety.com/support" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 font-medium text-sm">
             Support
-          </NuxtLink>
+          </a>
           
           <!-- Mobile Hamburger (hidden on desktop) -->
           <button 

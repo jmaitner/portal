@@ -182,145 +182,10 @@
           </div>
         </div>
 
-        <!-- Step 3: Court/Reason -->
+
+
+        <!-- Step 3: License & Address -->
         <div v-else-if="currentStepIndex === 2" class="space-y-6">
-          <div>
-            <label for="reason" class="block text-sm font-medium text-gray-700">
-              Reason for course <span class="text-red-500">*</span>
-            </label>
-            <select
-              id="reason"
-              v-model="form.reason"
-              required
-              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-            >
-              <option value="">Select a reason</option>
-              <option value="court-ordered">Court-ordered</option>
-              <option value="dhsmv">DHSMV</option>
-              <option value="insurance">Insurance discount</option>
-              <option value="voluntary">Voluntary</option>
-            </select>
-          </div>
-
-          <!-- Court-ordered or DHSMV fields -->
-          <div v-if="['court-ordered', 'dhsmv'].includes(form.reason)" class="space-y-4">
-            <div>
-              <label for="county" class="block text-sm font-medium text-gray-700">
-                County <span class="text-red-500">*</span>
-              </label>
-              <select
-                id="county"
-                v-model="form.county"
-                required
-                :class="[
-                  'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
-                  errors.county ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''
-                ]"
-              >
-                <option value="">Select a county</option>
-                <option v-for="county in counties" :key="county" :value="county">
-                  {{ county }}
-                </option>
-              </select>
-              <p v-if="errors.county" class="mt-1 text-sm text-red-600">
-                {{ errors.county }}
-              </p>
-            </div>
-
-            <div>
-              <label for="court" class="block text-sm font-medium text-gray-700">
-                Court <span class="text-red-500">*</span>
-              </label>
-              <select
-                id="court"
-                v-model="form.court"
-                required
-                :class="[
-                  'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
-                  errors.court ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''
-                ]"
-              >
-                <option value="">Select a court</option>
-                <option v-for="court in filteredCourts" :key="court.id" :value="court.id">
-                  {{ court.name }}
-                </option>
-                <option value="not-listed">Not listed</option>
-              </select>
-              <p v-if="errors.court" class="mt-1 text-sm text-red-600">
-                {{ errors.court }}
-              </p>
-            </div>
-
-            <div v-if="form.court === 'not-listed'">
-              <label for="customCourt" class="block text-sm font-medium text-gray-700">
-                Court name <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="customCourt"
-                v-model="form.customCourt"
-                type="text"
-                required
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              />
-            </div>
-
-            <div>
-              <label for="caseNumber" class="block text-sm font-medium text-gray-700">
-                Case/Citation number <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="caseNumber"
-                v-model="form.caseNumber"
-                type="text"
-                required
-                pattern="[A-Za-z0-9\-]+"
-                :class="[
-                  'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm',
-                  errors.caseNumber ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''
-                ]"
-                :aria-invalid="!!errors.caseNumber"
-                aria-describedby="caseNumber-error"
-              />
-              <p v-if="errors.caseNumber" id="caseNumber-error" class="mt-1 text-sm text-red-600">
-                {{ errors.caseNumber }}
-              </p>
-              <p class="mt-1 text-sm text-gray-500">
-                Letters, numbers, and hyphens only
-              </p>
-            </div>
-          </div>
-
-          <!-- Insurance fields -->
-          <div v-if="form.reason === 'insurance'" class="space-y-4">
-            <div>
-              <label for="insuranceCompany" class="block text-sm font-medium text-gray-700">
-                Insurance company name <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="insuranceCompany"
-                v-model="form.insuranceCompany"
-                type="text"
-                required
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              />
-            </div>
-
-            <div>
-              <label for="policyNumber" class="block text-sm font-medium text-gray-700">
-                Policy number (optional)
-              </label>
-              <input
-                id="policyNumber"
-                v-model="form.policyNumber"
-                type="text"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 4: License & Address -->
-        <div v-else-if="currentStepIndex === 3" class="space-y-6">
           <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label for="dateOfBirth" class="block text-sm font-medium text-gray-700">
@@ -725,14 +590,15 @@
 </template>
 
 <script setup>
-definePageMeta({
-  layout: 'default'
-})
-
 // Import static data
 import countiesData from '~/static-data/counties/fl.json'
 import courtsData from '~/static-data/courts/fl.json'
 import securityQuestionsData from '~/static-data/security-questions.json'
+
+// Page metadata - no header for enrollment flow
+definePageMeta({
+  layout: false
+})
 
 // Course data
 const courseSlug = useRoute().params.slug
@@ -753,11 +619,6 @@ const steps = [
     id: 'payment',
     title: 'Payment',
     description: 'Complete your course payment'
-  },
-  {
-    id: 'reason',
-    title: 'Course Reason',
-    description: 'Tell us why you\'re taking this course'
   },
   {
     id: 'license',
@@ -793,16 +654,7 @@ const form = ref({
   // Step 2: Payment (handled in memory)
   paymentCompleted: false,
   
-  // Step 3: Reason
-  reason: '',
-  county: '',
-  court: '',
-  customCourt: '',
-  caseNumber: '',
-  insuranceCompany: '',
-  policyNumber: '',
-  
-  // Step 4: License & Address
+  // Step 3: License & Address
   dateOfBirth: '',
   driversLicense: '',
   licenseState: 'FL',

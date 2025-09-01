@@ -51,3 +51,8 @@
     <FooterBar />
   </div>
 </template>
+
+<script setup>
+// Import components
+import AccountMenu from '~/components/AccountMenu.vue'
+</script>

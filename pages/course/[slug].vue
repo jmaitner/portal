@@ -212,26 +212,7 @@ const currentDate = new Date().toLocaleDateString('en-US', {
     <!-- Header -->
     <HeaderBar />
     
-    <!-- Mobile Header with Course Title -->
-    <div class="lg:hidden bg-white border-b border-gray-200 px-4 py-3 sticky top-16 z-30">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-          <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" />
-          <div>
-            <h1 class="text-lg font-semibold text-gray-900">Florida Basic Driver Improvement</h1>
-            <p class="text-sm text-gray-600">Course Progress</p>
-          </div>
-        </div>
-        <UButton
-          @click="showMobileRail = !showMobileRail"
-          color="gray"
-          variant="ghost"
-          icon="i-heroicons-bars-3"
-          size="sm"
-          class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        />
-      </div>
-    </div>
+
     
     <!-- Main Content -->
     <div class="flex">
@@ -345,6 +326,20 @@ const currentDate = new Date().toLocaleDateString('en-US', {
 
         <!-- Content Area -->
         <div class="p-4 lg:p-8 flex-1">
+          <!-- Mobile Hamburger Button (hidden on desktop) -->
+          <div class="lg:hidden mb-4">
+            <UButton
+              @click="showMobileRail = !showMobileRail"
+              color="gray"
+              variant="ghost"
+              icon="i-heroicons-bars-3"
+              size="sm"
+              class="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Menu
+            </UButton>
+          </div>
+          
           <div class="w-full h-full flex flex-col">
             <!-- Final Exam -->
             <div v-if="currentModuleId === 'final-exam'" class="space-y-6">

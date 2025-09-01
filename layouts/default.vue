@@ -25,7 +25,10 @@
           </NuxtLink>
           
           <!-- Mobile Hamburger (hidden on desktop) -->
-          <button class="lg:hidden w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+          <button 
+            @click="$emit('toggle-mobile-rail')"
+            class="lg:hidden w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
             <UIcon name="i-heroicons-bars-3" class="w-4 h-4 text-gray-600" />
           </button>
           

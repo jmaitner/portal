@@ -3,10 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt generate",
     "dev": "nuxt dev",
+    "build": "nuxt generate",
     "generate": "nuxt generate",
     "preview": "npx http-server dist -p 4173 -c-1",
+    "clean": "rimraf .nuxt .output dist",
+    "repreview": "npm run clean && npm run build && npm run preview",
+    "kill-preview": "pkill -f \"http-server|nuxt|vite|node .*http-server\" || true",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {

@@ -1,33 +1,16 @@
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white border-b border-gray-200">
-      <div class="flex items-center justify-between px-6 py-4">
-        <!-- Left: Logo -->
-        <div class="flex items-center space-x-3">
-          <img src="/branding/logo.svg" alt="Road Ready Safety" class="h-6 w-auto" />
-          <span class="text-lg font-semibold text-gray-900">Road Ready Safety</span>
-        </div>
-        
-        <!-- Middle: Empty space -->
-        <div class="flex-1"></div>
-        
-        <!-- Right: Support, Avatar -->
-        <div class="flex items-center space-x-4">
-          <NuxtLink to="/course/fl-bdi" class="text-gray-600 hover:text-gray-900 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
-            Back to Course
-          </NuxtLink>
-          
-          <div class="relative">
-            <button class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
-              <UIcon name="i-heroicons-user" class="w-4 h-4 text-gray-600" />
-            </button>
-          </div>
-        </div>
+    <!-- Back to Course Link -->
+    <div class="bg-white border-b border-gray-200">
+      <div class="mx-auto max-w-[1120px] px-4 lg:px-6 py-4">
+        <NuxtLink to="/course/fl-bdi" class="inline-flex items-center space-x-2 text-gray-600 hover:text-gray-900 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded">
+          <UIcon name="i-heroicons-arrow-left" class="w-4 h-4" />
+          <span>Back to Course</span>
+        </NuxtLink>
       </div>
-    </header>
+    </div>
 
-        <!-- Main Content -->
+    <!-- Main Content -->
     <main class="container mx-auto max-w-4xl px-6 py-8">
       <div class="space-y-8">
         <div class="text-center">
@@ -122,3 +105,7 @@
     </main>
   </div>
 </template>
+
+<script setup>
+definePageMeta({ layout: 'default' })
+</script>

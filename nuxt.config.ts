@@ -48,5 +48,10 @@ export default defineNuxtConfig({
     '/': { prerender: true },
     '/support': { prerender: true },
     '/dashboard': { prerender: true }
+  },
+  nitro: {
+    prerender: {
+      routes: ['/course/fl-bdi']
+    }
   }
 })

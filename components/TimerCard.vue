@@ -93,15 +93,7 @@ defineExpose({
           <div class="text-sm text-blue-700 font-medium">
             Time Remaining
           </div>
-          <!-- Progress Bar -->
-          <div class="mt-3 w-32 mx-auto">
-            <div class="bg-blue-200 rounded-full h-2">
-              <div 
-                class="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-out"
-                :style="{ width: `${((props.secondsTotal - secondsRemaining) / props.secondsTotal) * 100}%` }"
-              ></div>
-            </div>
-          </div>
+
         </div>
         
         <!-- Right: Next Button -->
@@ -109,7 +101,7 @@ defineExpose({
           <UButton
             v-if="hasNext"
             @click="onNext"
-            :color="isFinished ? 'primary' : 'gray'"
+            color="primary"
             variant="solid"
             size="lg"
             icon="i-heroicons-arrow-right"
@@ -147,22 +139,14 @@ defineExpose({
         <div class="text-sm text-blue-700 font-medium mb-3">
           Time Remaining
         </div>
-        <!-- Progress Bar -->
-        <div class="w-48 mx-auto">
-          <div class="bg-blue-200 rounded-full h-2">
-            <div 
-              class="bg-blue-600 h-2 rounded-full transition-all duration-1000 ease-out"
-              :style="{ width: `${((props.secondsTotal - secondsRemaining) / props.secondsTotal) * 100}%` }"
-            ></div>
-          </div>
-        </div>
+
       </div>
       
       <!-- Next Button -->
       <UButton
         v-if="hasNext"
         @click="onNext"
-        :color="isFinished ? 'primary' : 'gray'"
+        color="primary"
         variant="solid"
         icon="i-heroicons-arrow-right"
         icon-right

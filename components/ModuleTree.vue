@@ -71,7 +71,7 @@ const getStatusIcon = (status, kind) => {
   } else if (status === 'complete') {
     return 'i-heroicons-check-circle'
   } else if (status === 'in-progress') {
-    return 'i-heroicons-circle'
+    return 'i-heroicons-circle-stack'
   } else {
     return 'i-heroicons-circle-stack'
   }
